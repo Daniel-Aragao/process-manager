@@ -1,7 +1,7 @@
-let Collaborator = function(name, matricula, process, projects){
+let Collaborator = function(name, matricula, password, projects){
     this.Name = name;
     this.Matricula = matricula;
-    this.Password = process;
+    this.Password = password;
     this.Projects = projects;
 }
 
