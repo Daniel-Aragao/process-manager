@@ -1,4 +1,4 @@
-let Task = function (name, details, artifact, responsible, process, previousTask, nextTask, eTypeTask, participants){
+const Task = function (name, details, artifact, responsible, process, previousTask, nextTask, eTypeTask, participants){
     this.Name = name;
     this.Details = details;
     this.Artifact = artifact;
@@ -7,7 +7,7 @@ let Task = function (name, details, artifact, responsible, process, previousTask
     this.PreviousTask = previousTask;
     this.NextTask = nextTask;
     this.ETypeTask = eTypeTask;
-    this.Participants = participants;    
+    this.Participants = participants;
 }
 
 module.exports = Task;

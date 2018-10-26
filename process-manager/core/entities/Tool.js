@@ -1,4 +1,4 @@
-let Tool = function(id, name, process, task){
+const Tool = function(id, name, process, task){
     this._id = id;
     this.Name = name;
     this.Process = process;

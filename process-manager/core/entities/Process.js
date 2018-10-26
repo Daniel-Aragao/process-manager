@@ -1,4 +1,4 @@
-let Process = function (name, id, team, project, descricao, artifact, task, tool){
+const Process = function (name, id, team, project, descricao, artifact, task, tool){
     this.Name = name;
     this._id = id;
     this.Team = team;

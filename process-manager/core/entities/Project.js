@@ -1,4 +1,4 @@
-let Project = function (name, id, manager, collaborator){
+const Project = function (name, id, manager, collaborator){
     this.Name = name;
     this._id = id;
     this.Manager = manager;
