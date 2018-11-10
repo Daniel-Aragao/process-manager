@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
+const Process = require('./Process')
+const Project = require('./Project')
 
 const Collaborator = mongoose.Schema({
     name: String,
-    registration: Number,    
+    matricula: String,
+    process: [Process],
+    projects: [Project]
 }, {
     timestamps: true
 });
