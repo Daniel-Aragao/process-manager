@@ -1,24 +1,24 @@
 const mongoose = require('mongoose');
-const Process = require('./Process')
-const Artifact = require('./Artifact')
-const Task = require('./Task')
-const Collaborator = require('.Collaborator');
-const ETypeTask = require('../app/enums/ETypeTask');
+const Schema = mongoose.Schema;
+// const Process = require('./Process')
+// const Artifact = require('./Artifact')
+// const Collaborator = require('./Collaborator');
+// const ETypeTask = require('../enums/ETypeTask');
 
 const Task = mongoose.Schema({
   name: String,
   details: String,
-  artifact: [Artifact],
-  responsible: Collaborator,
-  process: Process,
-  previousTask: [Task],
-  nextTask: [Task],
-  eTypeTask: ETypeTask,
-  participants: [Collaborator]
+  artifact: [Schema.ObjectId],
+  responsible: Schema.ObjectId,
+  process: Schema.ObjectId,
+  previousTask: [Schema.ObjectId],
+  nextTask: [Schema.ObjectId],
+  eTypeTask: Number,
+  participants: [Schema.ObjectId]
 }, {
     timestamps: true
 });
 
 module.exports = function(){
-    return module.exports = mongoose.model('Task', Task);;
+    return mongoose.model('Task', Task);;
 }

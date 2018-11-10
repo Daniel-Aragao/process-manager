@@ -1,4 +1,6 @@
-module.exports = {
-    GUIA = 1,
-    CODIGO = 2
+module.exports = function(){
+    return {
+        GUIA: 1,
+        CODIGO: 2
+    }
 }

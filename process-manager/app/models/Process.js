@@ -1,19 +1,16 @@
 const mongoose = require('mongoose');
-const Collaborator = require('./Collaborator');
-const Artifact = require('./Artifact');
+const Schema = mongoose.Schema;
+// const Artifact = require('./Artifact');
 const Task = require('./Task');
 const Tool = require('./Tool');
 
 const Process = mongoose.Schema({
     name: String,
-    equipe: [Collaborator],
-    projeto: Project,
+    equipe: [Schema.ObjectId],
+    projeto: Schema.ObjectId,
     description: String,
-    artifacts: [Artifact],
-    activities: [Task],
-    tools: [Tool]
 });
 
 module.exports = function(){
-    return module.exports = mongoose.model('Process', Process);;
+    return mongoose.model('Process', Process);;
 }

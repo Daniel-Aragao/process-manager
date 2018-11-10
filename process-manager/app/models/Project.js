@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const Process = require('./Process')
 const Collaborator = require('./Collaborator')
 
 const Project = mongoose.Schema({
     name: String,
     id: Number,
-    process: [Process],
-    collaborators: [Collaborator]
+    collaborators: [Schema.ObjectId]
 }, {
     timestamps: true
 });
 
 module.exports = function(){
-    return module.exports = mongoose.model('Project', Project);;
+    return mongoose.model('Project', Project);;
 }

@@ -5,7 +5,7 @@ var expressValidator = require('express-validator');
 var cors = require('cors');
 var mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/vuenodedb").then(
+mongoose.connect("mongodb://localhost:27017/process-manager").then(
           () => {console.log('Database connection is successful') },
           err => { console.log('Error when connecting to the database'+ err)}
 );
@@ -19,10 +19,10 @@ app.use(cors());
 
 
 consign()
-	.include('app/routes')
-	// .then('config/dbConnection.js')
 	.then('app/models')
+	// .then('config/dbConnection.js')
 	.then('app/controllers')
+	.include('app/routes')
 	.into(app);
 
 module.exports = app;
