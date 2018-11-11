@@ -9,6 +9,4 @@ var ProjectSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = function(){
-    return mongoose.model('ProjectModel', ProjectSchema);
-}
+module.exports = function(){return mongoose.model('ProjectModel', ProjectSchema);}
