@@ -9,4 +9,4 @@ var ProjectSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Project', ProjectSchema);
+module.exports = mongoose.model('ProjectModel', ProjectSchema);

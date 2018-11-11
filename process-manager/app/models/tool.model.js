@@ -9,4 +9,4 @@ var ToolSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Tool', ToolSchema);
+module.exports = mongoose.model('ToolModel', ToolSchema);

@@ -9,4 +9,4 @@ var CollaboratorSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('Collaborator', CollaboratorSchema);
+module.exports = mongoose.model('CollaboratorModel', CollaboratorSchema);
