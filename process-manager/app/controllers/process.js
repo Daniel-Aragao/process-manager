@@ -1,5 +1,6 @@
 module.exports.index = function(application, req, res){
-    application.app.models.Process.find((err, processes) => {
+    // console.log(application.app.models)
+    application.app.models.process.find((err, processes) => {
         if(err){
             console.log(err);
         }else{

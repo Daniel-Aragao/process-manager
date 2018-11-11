@@ -10,4 +10,4 @@ var ArtifactSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('ArtifactModel', ArtifactSchema);
+module.exports = function(){return mongoose.model('ArtifactModel', ArtifactSchema);}

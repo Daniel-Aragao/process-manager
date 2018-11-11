@@ -19,9 +19,9 @@ app.use(cors());
 
 
 consign()
+	.include('app/routes')
 	.then('app/models')
 	.then('app/controllers')
-	.include('app/routes')
 	.into(app);
 
 module.exports = app;

@@ -13,4 +13,4 @@ var ProcessSchema = new mongoose.Schema({
     timestamps: true
 });
 
-module.exports = mongoose.model('ProcessModel', ProcessSchema);
+module.exports = function(){ return mongoose.model('ProcessModel', ProcessSchema);}
