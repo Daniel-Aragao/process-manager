@@ -1,17 +1,12 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-// const Process = require('./Process')
-// const Task = require('./Task')
+var mongoose = require('mongoose');
 
-const Tool = mongoose.Schema({
-  id: Number,
+var ToolSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   name: String,
-  process: Schema.ObjectId,
-  task: [Schema.ObjectId]
-}, {
+  process: {type: mongoose.Schema.Types.ObjectId, ref: 'Process'},
+  task: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}]
+},{
     timestamps: true
 });
 
-module.exports = function(){
-    return mongoose.model('Tool', Tool);;
-}
+module.exports = mongoose.model('Tool', ToolSchema);

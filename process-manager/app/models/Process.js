@@ -1,16 +1,16 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-// const Artifact = require('./Artifact');
-const Task = require('./Task');
-const Tool = require('./Tool');
+var mongoose = require('mongoose');
 
-const Process = mongoose.Schema({
+var ProcessSchema = new mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
     name: String,
-    equipe: [Schema.ObjectId],
-    projeto: Schema.ObjectId,
+    equipe: [{type:mongoose.Schema.Types.ObjectId, ref: 'Collaborator'}],
+    projeto: {type:mongoose.Schema.Types.ObjectId, ref: 'Project'},
     description: String,
+    artifact: [{type:mongoose.Schema.Types.ObjectId, ref: 'Artifact'}],
+    tasks: [{type:mongoose.Schema.Types.ObjectId, ref: 'Task'}],
+    tools: [{type:mongoose.Schema.Types.ObjectId, ref: 'Tool'}]
+}, {
+    timestamps: true
 });
 
-module.exports = function(){
-    return mongoose.model('Process', Process);;
-}
+module.exports = mongoose.model('Process', ProcessSchema);

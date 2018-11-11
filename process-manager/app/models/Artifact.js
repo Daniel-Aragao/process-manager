@@ -1,19 +1,13 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-// const ETypeArtifact = require('../enums/ETypeArtifact')
-// const Task = require('./Task')
+var mongoose = require('mongoose');
 
-const Artifact = mongoose.Schema({
-    id: Number,
+var ArtifactSchema = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
   name: String,
-  eTypeArtifact: Number,
+  eTypeArtifact: {type: String, enum: ['GUIA','CODIGO']},
   details: String,
-  tasks: [Schema.ObjectId],
-  process: Schema.ObjectId
+  tasks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}]
 }, {
     timestamps: true
 });
 
-module.exports = function(){
-    return mongoose.model('Artifact', Artifact);;
-}
+module.exports = mongoose.model('Artifact', ArtifactSchema);
