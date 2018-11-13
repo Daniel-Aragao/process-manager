@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var TaskSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+  // _id: mongoose.Schema.Types.ObjectId,
   name: String,
   details: String,
   artifact: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artifact'}],

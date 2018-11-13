@@ -13,7 +13,10 @@ mongoose.connect("mongodb://localhost:27017/processmanager", { useNewUrlParser: 
 var app = express();
 
 app.use(express.static('./app/public'));
-app.use(bodyParser.urlencoded({extended: true}));
+
+// app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 app.use(expressValidator());
 app.use(cors());
 

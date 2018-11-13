@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var ArtifactSchema = new mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
+  // _id: mongoose.Schema.Types.ObjectId,
   name: String,
   eTypeArtifact: {type: String, enum: ['GUIA','CODIGO']},
   details: String,
