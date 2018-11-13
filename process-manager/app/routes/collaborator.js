@@ -3,7 +3,7 @@ module.exports = function(application){
        application.app.controllers.collaborator.index(application, req, res);
     });
 
-    application.get('/collaborator/:id', function(req, res){
+    application.get('/collaborator/id/:id', function(req, res){
         application.app.controllers.collaborator.find(application, req, res);
     });
 
