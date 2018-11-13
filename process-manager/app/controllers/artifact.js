@@ -1,7 +1,8 @@
 module.exports.index = function(application, req, res){
     application.app.models.artifact.find((err, artifacts) => {
         if(err){
-            console.log(err);
+          res.status(400);
+          res.json(err);
         }else{
             res.json(artifacts);
         }
@@ -11,7 +12,8 @@ module.exports.index = function(application, req, res){
 module.exports.find = function(application, req, res){
     application.app.models.artifact.findById(req.params.id, (err, artifacts) => {
         if(err){
-            console.log(err);
+          res.status(400);
+          res.json(err);
         }else{
             res.json(artifacts);
         }
@@ -22,7 +24,8 @@ module.exports.save = function(application, req, res){
     let artifact = new application.app.models.artifact(req.body);
     artifact.save((err, artifacts) => {
         if(err){
-            console.log(err);
+          res.status(400);
+          res.json(err);
         }else{
             res.json(artifacts);
         }
@@ -32,7 +35,8 @@ module.exports.save = function(application, req, res){
 module.exports.update = function(application, req, res){
     application.app.models.artifact.findById(req.body.id, (err, artifacts) => {
         if(err){
-            console.log(err);
+          res.status(400);
+          res.json(err);
         }else{
             artifacts.name = req.body.name
             artifacts.eTypeArtifact = req.body.eTypeArtifact
@@ -52,7 +56,8 @@ module.exports.update = function(application, req, res){
 module.exports.remove = function(application, req, res){
     application.app.models.artifact.findByIdAndRemove({_id: req.body.id},(err, artifacts) => {
         if(err){
-            console.log(err);
+          res.status(400);
+          res.json(err);
         }else{
             res.json(artifacts);
         }
