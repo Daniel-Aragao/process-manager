@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var ProcessSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
+    // _id: mongoose.Schema.Types.ObjectId,
     name: String,
     equipe: [{type:mongoose.Schema.Types.ObjectId, ref: 'Collaborator'}],
     projeto: {type:mongoose.Schema.Types.ObjectId, ref: 'Project'},
