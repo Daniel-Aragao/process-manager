@@ -3,7 +3,7 @@ module.exports = function(application){
        application.app.controllers.process.index(application, req, res);
     });
 
-    application.get('/process/:id', function(req, res){
+    application.get('/process/id/:id', function(req, res){
         application.app.controllers.process.find(application, req, res);
     });
 
