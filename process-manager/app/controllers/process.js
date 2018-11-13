@@ -49,7 +49,7 @@ module.exports.update = function(application, req, res){
 }
 
 module.exports.remove = function(application, req, res){
-    application.app.models.process.findByIdAndRemove({_id: req.body.id},(err, processes) => {
+    application.app.models.process.findOneAndDelete({_id: req.body.id},(err, processes) => {
         if(err){
             console.log(err);
         }else{
