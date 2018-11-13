@@ -5,6 +5,7 @@ var ArtifactSchema = new mongoose.Schema({
   name: String,
   eTypeArtifact: {type: String, enum: ['GUIA','CODIGO']},
   details: String,
+  process: {type: mongoose.Schema.Types.ObjectId, ref: 'Process', required: [true, 'Informe o código do processo']},
   tasks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}]
 }, {
     timestamps: true

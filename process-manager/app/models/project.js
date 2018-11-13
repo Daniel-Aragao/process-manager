@@ -1,8 +1,9 @@
 var mongoose = require('mongoose');
 
 var ProjectSchema = new mongoose.Schema({
-    // _id: mongoose.Schema.Types.ObjectId,
-    name: String,
+    _id: Number,
+    name: {type: String, required: [true, 'Informe um nome para o projeto']},
+    description: String,
     collaborators: [{type:mongoose.Schema.Types.ObjectId, ref: 'Collaborator'}],
     process: [{type: mongoose.Schema.Types.ObjectId, ref: 'Process'}]
 }, {
