@@ -1,17 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt_br">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title>frontend</title>
+    <!-- <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
+    <link rel="stylesheet" href="./bootstrap.min.css">
+    <script src="./jquery.min.js"></script>
+    <script src="./bootstrap.min.js"></script>
+    <title>Gerenciador de Processos</title>
+    <style>
+      body{
+        min-height: 100%;
+        background-color:#cad0da;
+      }
+      html{
+        min-height: 100%
+      }
+    </style>
   </head>
   <body>
     <noscript>
-      <strong>We're sorry but frontend doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+      <strong>A página necessita de javascript para continuar</strong>
     </noscript>
-    <div id="app"></div>
+
+    <div id="app" class="container"></div>
     <!-- built files will be auto injected -->
   </body>
 </html>
