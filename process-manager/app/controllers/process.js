@@ -1,5 +1,16 @@
-module.exports.index = function(application, req, res){
+module.exports.findAll = function(application, req, res){
     application.app.models.process.find((err, processes) => {
+        if(err){
+            res.status(400);
+            res.json(err);
+        }else{
+            res.json(processes);
+        }
+    });
+}
+
+module.exports.index = function(application, req, res){
+    application.app.models.process.find({project: req.params.project}, (err, processes) => {
         if(err){
             res.status(400);
             res.json(err);

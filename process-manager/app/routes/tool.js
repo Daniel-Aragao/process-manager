@@ -1,7 +1,7 @@
 module.exports = function(application){
-    application.get('/tool/all', function(req, res){
+    application.get('/tool', function(req, res){
         application.app.controllers.tool.findAll(application, req, res);
-     });
+    });
 
     application.get('/tool/:process', function(req, res){
        application.app.controllers.tool.index(application, req, res);

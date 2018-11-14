@@ -1,7 +1,11 @@
 module.exports = function(application){
     application.get('/artifact', function(req, res){
-       application.app.controllers.artifact.index(application, req, res);
+       application.app.controllers.artifact.findAll(application, req, res);
     });
+
+    application.get('/artifact/:process', function(req, res){
+        application.app.controllers.artifact.index(application, req, res);
+     });
 
     application.get('/artifact/id/:id', function(req, res){
         application.app.controllers.artifact.find(application, req, res);

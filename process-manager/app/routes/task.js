@@ -1,5 +1,5 @@
 module.exports = function(application){
-    application.get('/task/all', function(req, res){
+    application.get('/task', function(req, res){
         application.app.controllers.task.findAll(application, req, res);
      });
 

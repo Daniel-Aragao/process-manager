@@ -1,5 +1,9 @@
 module.exports = function(application){
     application.get('/collaborator', function(req, res){
+        application.app.controllers.collaborator.findAll(application, req, res);
+    });
+
+    application.get('/collaborator/:process', function(req, res){
        application.app.controllers.collaborator.index(application, req, res);
     });
 

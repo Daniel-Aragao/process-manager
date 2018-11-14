@@ -1,5 +1,16 @@
-module.exports.index = function(application, req, res){
+module.exports.findAll = function(application, req, res){
     application.app.models.artifact.find((err, artifacts) => {
+        if(err){
+          res.status(400);
+          res.json(err);
+        }else{
+            res.json(artifacts);
+        }
+    });
+}
+
+module.exports.index = function(application, req, res){
+    application.app.models.artifact.find({process: req.params.process}, (err, artifacts) => {
         if(err){
           res.status(400);
           res.json(err);

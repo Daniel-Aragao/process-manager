@@ -1,5 +1,16 @@
-module.exports.index = function(application, req, res){
+module.exports.findAll = function(application, req, res){
     application.app.models.collaborator.find((err, collaborators) => {
+        if(err){
+          res.status(400);
+          res.json(err);
+        }else{
+            res.json(collaborators);
+        }
+    });
+}
+
+module.exports.index = function(application, req, res){
+    application.app.models.collaborator.find({process: req.params.process}, (err, collaborators) => {
         if(err){
           res.status(400);
           res.json(err);

@@ -1,7 +1,11 @@
 module.exports = function(application){
     application.get('/process', function(req, res){
-       application.app.controllers.process.index(application, req, res);
+       application.app.controllers.process.findAll(application, req, res);
     });
+
+    application.get('/process/:project', function(req, res){
+        application.app.controllers.process.index(application, req, res);
+     });
 
     application.get('/process/id/:id', function(req, res){
         application.app.controllers.process.find(application, req, res);
