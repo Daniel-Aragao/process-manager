@@ -1,7 +1,7 @@
 <template>
     <nav id="nav" class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">
-            <img src="/assets/Logo.png" width="60" height="60" class="d-inline-block align-top" alt="">
+            <img src="/assets/logo.png" width="60" height="60" class="d-inline-block align-top" alt="">
         </a>
         <!-- <a class="navbar-brand" href="#">GP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
