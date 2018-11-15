@@ -1,5 +1,5 @@
 <template>
-    <nav id="nav" class="navbar navbar-expand-lg navbar-light">
+    <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="navbar-brand" href="#">
             <img src="/assets/logo.png" width="60" height="60" class="d-inline-block align-top" alt="">
         </a>
@@ -42,9 +42,9 @@ export default {
 </script>
 
 <style>
-#nav{
+/* #nav{
     background-color: #e3f2fd;
-}
+} */
 #nav .nav-item.btn.btn-danger{
     margin-right: 10px;
 }
@@ -52,5 +52,13 @@ export default {
 #nav.navbar-light .nav-link{
     color: white;
     font-weight: 600px;
+}
+
+#navbarNavDropdown .dropdown-item{
+    background-color: #c9cfd8;
+    margin-bottom: 5px;
+}
+#navbarNavDropdown .dropdown-item:hover{
+    background-color: #d6d6d6;
 }
 </style>
