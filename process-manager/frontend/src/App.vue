@@ -4,9 +4,9 @@
     <navbar-superior/>
     
     <div class="container">
-      <h2>{{titulo}}</h2>
+      <h2>{{ titulo }}</h2>
       <div class="container-body">
-        Descrição e tal
+        <intro @titleChanged="setTitle"/>
       </div>
     </div>
   </div>
@@ -14,12 +14,24 @@
 </template>
 
 <script>
-import navbarSuperior from './components/navbar.vue'
+import navbarSuperior from './components/navbar.vue';
+import intro from './components/intro.vue'
 
 export default {
   name: 'app',
   components: {
-    navbarSuperior
+    navbarSuperior,
+    intro
+  },
+  data(){
+    return {
+      titulo: ""
+    }
+  },
+  methods: {
+    setTitle(title){
+      this.titulo = title
+    }
   }
 }
 </script>
@@ -35,6 +47,10 @@ export default {
     border-bottom-right-radius: .25rem;
     min-height: 80%;
     padding: 40px
+  }
+
+  .container-body{
+    margin-top: 25px;
   }
 /* #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
