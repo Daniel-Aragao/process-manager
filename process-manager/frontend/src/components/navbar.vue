@@ -16,9 +16,9 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategorias" data-toggle="dropdown">Categorias</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownCategorias">
                     <router-link class="dropdown-item" to="/artefato">Artefatos</router-link>
-                    <router-link class="dropdown-item" to="/">Tarefas</router-link>
-                    <router-link class="dropdown-item" to="/">Ferramentas</router-link>
-                    <router-link class="dropdown-item" to="/">Guias e Orientações</router-link>
+                    <router-link class="dropdown-item" to="/tarefa">Tarefas</router-link>
+                    <router-link class="dropdown-item" to="/ferramenta">Ferramentas</router-link>
+                    <router-link class="dropdown-item" to="/guia">Guias e Orientações</router-link>
                 </div>
             </li>
             <li class="nav-item btn btn-danger">

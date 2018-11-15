@@ -1,14 +1,14 @@
 <template>
     <div>
-        Tela de Tarefa
+        Tela de Guia
     </div>
 </template>
 
 <script>
 export default {
-    name: 'tarefa',
+    name: 'guia',
     mounted(){
-        this.$emit('titleChanged', 'Tarefa');
+        this.$emit('titleChanged', 'Guia');
     }
 }
 </script>

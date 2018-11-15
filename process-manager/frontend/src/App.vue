@@ -17,13 +17,18 @@
 import navbarSuperior from '@/components/navbar';
 import introComp from '@/components/intro'
 import artefato from '@/components/artifact';
-
+import tarefa from '@/components/task';
+import ferramenta from '@/components/tool';
+import guia from '@/components/guide';
 export default {
   name: 'app',
   components: {
     navbarSuperior,
     introComp,
-    artefato
+    artefato,
+    tarefa,
+    ferramenta,
+    guia
   },
   data(){
     return {
