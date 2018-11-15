@@ -54,11 +54,8 @@ export default {
     font-weight: 600px;
 }
 
-#navbarNavDropdown .dropdown-item{
-    background-color: #c9cfd8;
-    margin-bottom: 5px;
-}
 #navbarNavDropdown .dropdown-item:hover{
-    background-color: #d6d6d6;
+    background-color: #f36767;
+    color: white;
 }
 </style>
