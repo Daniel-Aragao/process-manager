@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <navbar-superior msg="Welcome to Your Vue.js App"/>
+    <navbar-superior/>
     
     <div class="container">
-      eita
+      
     </div>
   </div>
 
