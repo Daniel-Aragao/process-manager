@@ -35,6 +35,9 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  mounted(){
+    this.$emit('titleChanged', 'Hello World!');
   }
 }
 </script>

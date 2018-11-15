@@ -6,7 +6,8 @@
     <div class="container">
       <h2>{{ titulo }}</h2>
       <div class="container-body">
-        <intro @titleChanged="setTitle"/>
+        <!-- <intro-comp @titleChanged="setTitle"/> -->
+        <router-view @titleChanged="setTitle"></router-view>
       </div>
     </div>
   </div>
@@ -15,13 +16,13 @@
 
 <script>
 import navbarSuperior from './components/navbar.vue';
-import intro from './components/intro.vue'
+import introComp from './components/intro.vue'
 
 export default {
   name: 'app',
   components: {
     navbarSuperior,
-    intro
+    introComp
   },
   data(){
     return {
