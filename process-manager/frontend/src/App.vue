@@ -20,16 +20,10 @@ import artefato from '@/components/artifact';
 import tarefa from '@/components/task';
 import ferramenta from '@/components/tool';
 import guia from '@/components/guide';
+
 export default {
   name: 'app',
-  components: {
-    navbarSuperior,
-    introComp,
-    artefato,
-    tarefa,
-    ferramenta,
-    guia
-  },
+  components: {navbarSuperior, introComp, artefato, tarefa, ferramenta, guia},
   data(){
     return {
       titulo: ""
