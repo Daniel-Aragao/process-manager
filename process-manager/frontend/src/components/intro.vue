@@ -6,8 +6,8 @@
 
 <script>
 export default {
-    name: 'intro',
-    beforeMount(){
+    name: 'intro-comp',
+    mounted(){
         this.$emit('titleChanged', 'Introdução');
     }
 }
