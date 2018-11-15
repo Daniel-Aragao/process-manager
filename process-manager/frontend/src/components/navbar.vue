@@ -1,7 +1,7 @@
 <template>
     <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-dark">
         <a class="navbar-brand" href="#">
-            <img src="/assets/LogoL.png" width="50" height="50" class="d-inline-block align-top" alt="">
+            <img src="/assets/user.png" width="50" height="50" class="d-inline-block align-top" alt="">
         </a>
         <!-- <a class="navbar-brand" href="#">GP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,10 +15,10 @@
             <li class="nav-item btn btn-danger dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategorias" data-toggle="dropdown">Categorias</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownCategorias">
-                    <a class="dropdown-item" href="#">Artefatos</a>
-                    <a class="dropdown-item" href="#">Tarefas</a>
-                    <a class="dropdown-item" href="#">Ferramentas</a>
-                    <a class="dropdown-item" href="#">Guias e Orientações</a>
+                    <router-link class="dropdown-item" to="/artefato">Artefatos</router-link>
+                    <router-link class="dropdown-item" to="/">Tarefas</router-link>
+                    <router-link class="dropdown-item" to="/">Ferramentas</router-link>
+                    <router-link class="dropdown-item" to="/">Guias e Orientações</router-link>
                 </div>
             </li>
             <li class="nav-item btn btn-danger">

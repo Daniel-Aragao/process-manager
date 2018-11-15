@@ -2,7 +2,6 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <navbar-superior/>
-    
     <div class="container">
       <h2>{{ titulo }}</h2>
       <div class="container-body">
@@ -15,14 +14,16 @@
 </template>
 
 <script>
-import navbarSuperior from './components/navbar.vue';
-import introComp from './components/intro.vue'
+import navbarSuperior from '@/components/navbar';
+import introComp from '@/components/intro'
+import artefato from '@/components/artifact';
 
 export default {
   name: 'app',
   components: {
     navbarSuperior,
-    introComp
+    introComp,
+    artefato
   },
   data(){
     return {
@@ -35,6 +36,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style>

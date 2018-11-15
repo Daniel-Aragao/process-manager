@@ -1,14 +1,14 @@
 <template>
     <div>
-        Tela de Introdução
+        Tela de Artefato
     </div>
 </template>
 
 <script>
 export default {
-    name: 'intro-comp',
+    name: 'artefato',
     mounted(){
-        this.$emit('titleChanged', 'Introdução');
+        this.$emit('titleChanged', 'Artefato');
     }
 }
 </script>
