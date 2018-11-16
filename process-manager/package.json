@@ -18,6 +18,7 @@
     "testEnvironment": "node"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "consign": "^0.1.6",
     "cors": "^2.8.5",
