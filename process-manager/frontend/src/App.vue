@@ -9,7 +9,6 @@
         <router-view @titleChanged="setTitle"></router-view>
       </div>
     </div>
-    <process-selector/>
   </div>
 
 </template>
@@ -21,11 +20,10 @@ import artefato from '@/components/artifact';
 import tarefa from '@/components/task';
 import ferramenta from '@/components/tool';
 import guia from '@/components/guide';
-import processSelector from '@/components/processSelector'
 
 export default {
   name: 'app',
-  components: {navbarSuperior, introComp, artefato, tarefa, ferramenta, guia, processSelector},
+  components: {navbarSuperior, introComp, artefato, tarefa, ferramenta, guia},
   data(){
     return {
       titulo: ""
@@ -35,13 +33,7 @@ export default {
     setTitle(title){
       this.titulo = title
     }
-  },
-  mounted(){
-        let processid = localStorage.getItem("processid");
-        if(!processid){
-            this.$emit('chooseProcess');
-        }
-    }
+  }
 }
 
 </script>
