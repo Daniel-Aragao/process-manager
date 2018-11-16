@@ -37,7 +37,7 @@
                 <a class="nav-link" href="#">Fluxos</a>
             </li>
             <li class="nav-item btn btn-danger float-right">
-                <a class="nav-link" href="#">Processos</a>
+                <a class="nav-link" @click="processosSelection">Processos</a>
             </li>
             </ul>
         </div>
@@ -50,6 +50,11 @@ export default {
 //   props: {
 //     msg: String
 //   }
+methods: {
+    processosSelection(){
+        this.$emit("processosSelection")
+    }
+}
 
     
 }

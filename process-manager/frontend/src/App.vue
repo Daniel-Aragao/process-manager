@@ -1,45 +1,60 @@
 <template>
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
-    <navbar-superior/>
+    <navbar-superior @processosSelection="processosSelection"/>
     <div class="container">
-      <h2>{{ titulo }}</h2>
+      <h2>{{ titulo + " - " + processName}}</h2>
       <div class="container-body">
         <!-- <intro-comp @titleChanged="setTitle"/> -->
         <router-view @titleChanged="setTitle"></router-view>
       </div>
     </div>
-    <process-selector/>
+    <process-selector @chosenProcess="chosen" @newProcess="newProcess"/>
   </div>
 
 </template>
 
 <script>
 import navbarSuperior from '@/components/navbar';
-import introComp from '@/components/intro'
-import artefato from '@/components/artifact';
-import tarefa from '@/components/task';
-import ferramenta from '@/components/tool';
-import guia from '@/components/guide';
+// import introComp from '@/components/intro'
+// import artefato from '@/components/artifact';
+// import tarefa from '@/components/task';
+// import ferramenta from '@/components/tool';
+// import guia from '@/components/guide';
 import processSelector from '@/components/processSelector'
 
 export default {
   name: 'app',
-  components: {navbarSuperior, introComp, artefato, tarefa, ferramenta, guia, processSelector},
+  components: {navbarSuperior, processSelector},
   data(){
     return {
-      titulo: ""
+      titulo: "",
+      processName: ""
     }
   },
   methods: {
     setTitle(title){
       this.titulo = title
+    },
+    processosSelection(){
+      $(processSelectorModal).show();
+    },
+    newProcess(newProcessName){
+      // alert(newProcessName);  
+    },
+    chosen(process){
+      // alert(process.name);
+      this.processName = process.name;
+      localStorage.setItem("process", process.name)
+      localStorage.setItem("process.id", process.id)
     }
   },
   mounted(){
-        let processid = localStorage.getItem("processid");
-        if(!processid){
-            this.$emit('chooseProcess');
+        let process = localStorage.getItem("process");
+        if(!process){
+            this.processosSelection();
+        }else{
+          this.processName = process;
         }
     }
 }
