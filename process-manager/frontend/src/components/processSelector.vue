@@ -17,8 +17,10 @@
                         </div>
                     </div>
                 </div>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action flex-column align-items-start" v-for="(process, index) in processes" @click="select(index)" 
+                <ul v-if="processes && processes.length" class="list-group">
+                    <li 
+                    v-for="(process, index) in processes" @click="select(index)" 
+                    class="list-group-item list-group-item-action flex-column align-items-start" 
                         :class="{'active': isActive(index)}">                        
                         <div class="d-flex w-100 justify-content-between">
                             <h5 class="mb-1">{{process.name}}</h5>
@@ -27,6 +29,7 @@
                         <small>{{process.description}}</small>
                     </li>
                 </ul>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" @click="choose">Escolher</button>
@@ -48,14 +51,7 @@ export default {
             newProcessName: "",
             processSelected: null,
             justRemoved: false,
-            processes: [
-                {
-                    name:'1'
-                },
-                {
-                    name:'2'
-                }
-            ]
+            processes: []
         }
     },
     methods: {
@@ -66,13 +62,14 @@ export default {
             processSelectorModal.style.display = 'none'
         },
         newProcess(){
-            let newProcess = { name:this.newProcessName, project: 1 };
+            let self = this;
+
+            let newProcess = { name:this.newProcessName, project: 20 };
             // this.$emit('newProcess', this.newProcessName);
 
             processService.add(newProcess, function(response){
-                console.log(response);
-                // this.processes.push();
-                this.newProcessName = '';
+                self.processes.push(response.data);
+                self.newProcessName = '';
             });
         },
         choose(){
@@ -93,9 +90,17 @@ export default {
         },
         remove(index){
             // this.$emit('removeProcess', this.processes[index])
-            let removed = this.processes.splice(index, 1)[0];
-            this.justRemoved = true;
-            this.processSelected = null;
+            let self = this;
+
+            let toRemove = self.processes[index];
+
+            processService.remove(toRemove, function(response){
+                console.log(response);
+
+                let removed = self.processes.splice(index, 1)[0];
+                self.justRemoved = true;
+                self.processSelected = null;
+            });
         }
     },
     mounted(){

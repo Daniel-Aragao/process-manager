@@ -1,6 +1,7 @@
 module.exports.findAll = function(application, req, res){
     application.app.models.process.find((err, processes) => {
         if(err){
+            console.log(err);
             res.status(400);
             res.json(err);
         }else{
@@ -12,6 +13,7 @@ module.exports.findAll = function(application, req, res){
 module.exports.index = function(application, req, res){
     application.app.models.process.find({project: req.params.project}, (err, processes) => {
         if(err){
+            console.log(err);
             res.status(400);
             res.json(err);
         }else{
@@ -23,6 +25,7 @@ module.exports.index = function(application, req, res){
 module.exports.find = function(application, req, res){
     application.app.models.process.findById(req.params.id, (err, processes) => {
         if(err){
+            console.log(err);
             res.status(400);
             res.json(err);
         }else{
@@ -35,6 +38,7 @@ module.exports.save = function(application, req, res){
     let process = new application.app.models.process(req.body);
     process.save((err, processes) => {
         if(err){
+            console.log(err);
             res.status(400);
             res.json(err);
         }else{
@@ -46,6 +50,7 @@ module.exports.save = function(application, req, res){
 module.exports.update = function(application, req, res){
     application.app.models.process.findById(req.body.id, (err, processes) => {
         if(err){
+            console.log(err);
             res.status(400);
             res.json(err);
         }else{
@@ -54,6 +59,7 @@ module.exports.update = function(application, req, res){
 
             processes.save((err, processes) => {
                 if(err){
+                    console.log(err);
                     res.status(400);
                     res.json(err);  
                 }else{
@@ -67,6 +73,7 @@ module.exports.update = function(application, req, res){
 module.exports.remove = function(application, req, res){
     application.app.models.process.findOneAndDelete({_id: req.body.id},(err, processes) => {
         if(err){
+            console.log(err);
             res.status(400);
             res.json(err);
         }else{
