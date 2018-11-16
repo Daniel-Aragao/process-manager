@@ -3,10 +3,10 @@
         <div class="modal-dialog modal-dialog-centered" role="document"> <!--modal-lg-->
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Selecionar processo</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="hideModal">
+                <h5 class="modal-title">Selecione um processo</h5>
+                <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="hideModal">
                 <span aria-hidden="true">&times;</span>
-                </button>
+                </button> -->
             </div>
             <div class="modal-body">
                 <div class="col-12 form-group">
@@ -96,7 +96,7 @@ export default {
 .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #343a40;
+    border-color: #343a40;
 }
 </style>
