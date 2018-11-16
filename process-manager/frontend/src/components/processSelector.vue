@@ -18,9 +18,13 @@
                     </div>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item" v-for="(process, index) in processes" @click="select(index)" 
-                        :class="{'active': isActive(index)}">
-                        {{process.name}}
+                    <li class="list-group-item list-group-item-action flex-column align-items-start" v-for="(process, index) in processes" @click="select(index)" 
+                        :class="{'active': isActive(index)}">                        
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{process.name}}</h5>
+                            <span class="close" @click="remove(index)">&times;</span>
+                        </div>
+                        <small>{{process.description}}</small>
                     </li>
                 </ul>
             </div>
@@ -34,12 +38,16 @@
 </template>
 
 <script>
+import processService from '@/service/process.service';
+
+
 export default {
     name: 'process-selector',
     data() {
         return {
             newProcessName: "",
             processSelected: null,
+            justRemoved: false,
             processes: [
                 {
                     name:'1'
@@ -52,15 +60,20 @@ export default {
     },
     methods: {
         showModal(){
-            $(processSelectorModal).show();
+            processSelectorModal.style.display = 'block'
         },
         hideModal(){
-            $(processSelectorModal).hide();
+            processSelectorModal.style.display = 'none'
         },
         newProcess(){
-            this.processes.push({name:this.newProcessName});
-            this.$emit('newProcess', this.newProcessName);
-            this.newProcessName = '';
+            let newProcess = { name:this.newProcessName, project: 1 };
+            // this.$emit('newProcess', this.newProcessName);
+
+            processService.add(newProcess, function(response){
+                console.log(response);
+                // this.processes.push();
+                this.newProcessName = '';
+            });
         },
         choose(){
             if(this.processSelected){
@@ -69,14 +82,28 @@ export default {
             }
         },
         select(index){
-            this.processSelected = this.processes[index];
+            if(this.justRemoved){
+                this.justRemoved = false;
+            }else{
+                this.processSelected = this.processes[index];
+            }
         },
         isActive(index){
             return this.processes[index] == this.processSelected
+        },
+        remove(index){
+            // this.$emit('removeProcess', this.processes[index])
+            let removed = this.processes.splice(index, 1)[0];
+            this.justRemoved = true;
+            this.processSelected = null;
         }
     },
-    // mounted(){
-    // }
+    mounted(){
+        let self = this;
+        processService.list(function(response) {
+            self.processes = response.data;
+        });
+    }
 }
 </script>
 

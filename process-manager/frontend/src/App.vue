@@ -9,7 +9,7 @@
         <router-view @titleChanged="setTitle"></router-view>
       </div>
     </div>
-    <process-selector @chosenProcess="chosen" @newProcess="newProcess"/>
+    <process-selector @chosenProcess="chosen"/>
   </div>
 
 </template>
@@ -37,10 +37,7 @@ export default {
       this.titulo = title
     },
     processosSelection(){
-      $(processSelectorModal).show();
-    },
-    newProcess(newProcessName){
-      // alert(newProcessName);  
+      processSelectorModal.style.display = 'block'
     },
     chosen(process){
       // alert(process.name);
