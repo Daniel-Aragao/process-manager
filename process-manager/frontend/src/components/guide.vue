@@ -8,7 +8,7 @@
 export default {
     name: 'guia',
     mounted(){
-        this.$emit('titleChanged', 'Guia');
+        this.$emit('titleChanged', 'Guias e Orientações');
     }
 }
 </script>

@@ -13,6 +13,18 @@
                 <router-link class="nav-link" to="/">Início</router-link>
             </li>
             <li class="nav-item btn btn-danger dropdown">
+                <router-link class="nav-link" to="/artefato">Artefatos</router-link>
+            </li>
+            <li class="nav-item btn btn-danger dropdown">
+                <router-link class="nav-link" to="/tarefa">Tarefas</router-link>
+            </li>
+            <li class="nav-item btn btn-danger dropdown">
+                <router-link class="nav-link" to="/ferramenta">Ferramentas</router-link>
+            </li>
+            <li class="nav-item btn btn-danger dropdown">
+                <router-link class="nav-link" to="/guia">Guias e Orientações</router-link>
+            </li>
+            <!-- <li class="nav-item btn btn-danger dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategorias" data-toggle="dropdown">Categorias</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownCategorias">
                     <router-link class="dropdown-item" to="/artefato">Artefatos</router-link>
@@ -20,9 +32,12 @@
                     <router-link class="dropdown-item" to="/ferramenta">Ferramentas</router-link>
                     <router-link class="dropdown-item" to="/guia">Guias e Orientações</router-link>
                 </div>
-            </li>
+            </li> -->
             <li class="nav-item btn btn-danger">
                 <a class="nav-link" href="#">Fluxos</a>
+            </li>
+            <li class="nav-item btn btn-danger float-right">
+                <a class="nav-link" href="#">Processos</a>
             </li>
             </ul>
         </div>
@@ -31,10 +46,12 @@
 
 <script>
 export default {
-  name: 'navbar-superior'
+    name: 'navbar-superior',
 //   props: {
 //     msg: String
 //   }
+
+    
 }
 </script>
 
@@ -54,5 +71,15 @@ export default {
 #navbarNavDropdown .dropdown-item:hover{
     background-color: #f36767;
     color: white;
+}
+
+#nav ul.navbar-nav{
+    position: relative;
+    width: 100%;
+}
+
+#nav ul.navbar-nav > li.float-right{
+    position: absolute;
+    right: 0;
 }
 </style>
