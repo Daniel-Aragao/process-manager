@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import artifactService from './service/artifact.service';
+import artifactService from '@/service/artifact.service';
 
 export default {
     name: 'artefato',
@@ -62,7 +62,7 @@ export default {
           console.log(error)
         })
       }
-    }
+    },
     mounted(){
         this.$emit('titleChanged', 'Artefato');
     }
