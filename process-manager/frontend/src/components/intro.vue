@@ -1,13 +1,15 @@
 <template>
     <div>
-        <div class="float-right edition">
-            <div class="edit-btn btn btn-danger" v-if="!editMode" @click="setEditMode">
-                <span class="iconic iconic-pencil" title="pencil" aria-hidden="true"></span>
-                Editar
-            </div>
-            <div v-else @click="saveUpdate" class="btn btn-danger">
-                <span class="iconic iconic-check" title="check" aria-hidden="true"></span>
-                Salvar
+        <div class="col-lg-12 edition-father">
+            <div class="edition">
+                <div class="edit-btn btn btn-danger" v-if="!editMode" @click="setEditMode">
+                    <span class="iconic iconic-pencil" title="pencil" aria-hidden="true"></span>
+                    Editar
+                </div>
+                <div v-else @click="saveUpdate" class="btn btn-danger">
+                    <span class="iconic iconic-check" title="check" aria-hidden="true"></span>
+                    Salvar
+                </div>
             </div>
         </div>
         <div>
@@ -20,7 +22,14 @@
                 </div>
             </div>
             <div v-else>
-                <textarea id="process-description" type="text" rows="10" class="form-control red-border-left" v-model="process.description"/>
+                <div class="form-group">
+                    <label class="col-12">Nome: </label>
+                    <input type="text" class="form-control" v-model="process.name">
+                </div>
+                <div class="form-group">
+                    <label class="col-12">Descrição: </label>
+                    <textarea id="process-description" type="text" rows="10" class="form-control red-border-left" v-model="process.description"/>
+                </div>
             </div>
         </div>
     </div>
@@ -69,6 +78,14 @@ export default {
 </script>
 
 <style>
+.edition-father{
+    position: relative;
+    height: 40px;
+}
+.edition{
+    position: absolute;
+    right: 0;
+}
 .placeholder-color{
     color: grey;
     font-size: 20px;
