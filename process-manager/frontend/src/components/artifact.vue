@@ -23,11 +23,6 @@
           </select>
 
           <label for="inputState">Tarefa</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-
         </div>
       </div>
       <button type="submit" class="btn btn-primary" @click="addArtifact()">Salvar</button>
@@ -42,8 +37,36 @@ export default {
     name: 'artefato',
     data(){
         return {
-          Artifact: {name: '', eTypeArtifact: '', details: '', process: [], tasks: [] }
-        }
+          Artifact: {name: '', eTypeArtifact: '', details: '', process: null, tasks: [] },
+          filters: [
+            "Bungalow",
+            "Chalet",
+            "Guesthouse",
+            "Hotel",
+            "Townhouse",
+            "Apartment",
+            "Boutique hotel",
+            "Cabin",
+            "Guest suite",
+            "Hostel",
+            "Loft",
+            "Villa"
+          ],
+          search: "",
+          checkedFilters: [],
+          allSelected: false,
+          selectAllText: 'Select All',
+          activeTrigger: false,
+          dropdown: false,
+          showLoader: false
+        };
+    },
+    computed: {
+      filteredList() {
+        return this.filters.filter(item => {
+          return item.toLowerCase().includes(this.search.toLowerCase());
+        });
+      }
     },
     methods: {
       addArtifact() {
@@ -61,7 +84,49 @@ export default {
         .catch((error) => {
           console.log(error)
         })
+      },
+      selectAll: function() {
+        this.checkedFilters = [];
+        this.selectAllText = this.selectAllText == "Select All" ? 'Clear All' : 'Select All';
+        if (this.allSelected) {
+          for (filter in this.filters) {
+            this.checkedFilters.push(this.filters[filter].toString());
+          }
+        }
+      },
+      showDropdown: function(){
+        if(this.dropdown == false){
+          this.dropdown = true;
+          this.activeTrigger = true;
+          TweenMax.fromTo(
+            "#dropdown",
+            0.55,
+            {
+              autoAlpha: 0,
+              y: -10
+            },
+            {
+              autoAlpha: 1,
+              y: 0,
+              ease: Power2.easeOut
+            }
+          );
+        }else{
+          this.dropdown = false;
+          this.activeTrigger = false;
+           TweenMax.to(
+            "#dropdown",
+            0.2,
+            {
+              autoAlpha: 0,
+              y: -10,
+              ease: Power2.easeOut
+            });
+        }
       }
+    },
+    created: function () {
+            const customScroll = new SimpleBar(document.getElementById('customScroll'));
     },
     mounted(){
         this.$emit('titleChanged', 'Artefato');

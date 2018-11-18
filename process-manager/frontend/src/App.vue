@@ -16,6 +16,7 @@
 
 <script>
 import navbarSuperior from '@/components/navbar';
+import dropdown from '@components/dropdown';
 // import introComp from '@/components/intro'
 // import artefato from '@/components/artifact';
 // import tarefa from '@/components/task';
@@ -25,7 +26,7 @@ import processSelector from '@/components/processSelector'
 
 export default {
   name: 'app',
-  components: {navbarSuperior, processSelector},
+  components: {navbarSuperior,processSelector},
   data(){
     return {
       titulo: "",
@@ -40,7 +41,7 @@ export default {
       $(processSelectorModal).show();
     },
     newProcess(newProcessName){
-      // alert(newProcessName);  
+      // alert(newProcessName);
     },
     chosen(process){
       // alert(process.name);
