@@ -13,6 +13,10 @@ export default {
 
   remove: (process, cb) => {
     http.post('/process/remove', {id: process._id}).then(cb).catch(catchErrors);
+  },
+
+  edit: (process, cb) => {
+    http.post('/process/update')
   }
 
 }

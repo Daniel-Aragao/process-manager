@@ -3,7 +3,10 @@
     <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <navbar-superior @processosSelection="processosSelection"/>
     <div class="container">
-      <h2>{{ titulo + " - " + processName}}</h2>
+      <h2>
+        <span>{{ titulo + " - "}}</span>        
+        <span class="upFirstLetter">{{processName}}</span>
+      </h2>
       <div class="container-body">
         <!-- <intro-comp @titleChanged="setTitle"/> -->
         <router-view @titleChanged="setTitle"></router-view>
@@ -42,16 +45,17 @@ export default {
     chosen(process){
       // alert(process.name);
       this.processName = process.name;
-      localStorage.setItem("process", process.name)
-      localStorage.setItem("process.id", process.id)
+      localStorage.setItem("process", JSON.stringify(process));
+      // localStorage.setItem("process", process.name)
+      // localStorage.setItem("process.id", process.id)
     }
   },
   mounted(){
-        let process = localStorage.getItem("process");
+        let process = JSON.parse(localStorage.getItem("process"));
         if(!process){
             this.processosSelection();
         }else{
-          this.processName = process;
+          this.processName = process.name;
         }
     }
 }
@@ -82,4 +86,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 } */
+.upFirstLetter{
+  text-transform: capitalize;
+}
 </style>
