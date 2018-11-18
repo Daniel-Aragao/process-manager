@@ -12,11 +12,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: introComp
-    },
-    {
-      path: '/introComp',
-      component: introComp
+      component: introComp,
+      props: true
     },
     {
       path: '/artefato',

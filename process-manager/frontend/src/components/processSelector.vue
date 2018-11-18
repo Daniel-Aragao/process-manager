@@ -46,6 +46,9 @@ import processService from '@/service/process.service';
 
 export default {
     name: 'process-selector',
+    props:{
+        process: Object
+    },
     data() {
         return {
             newProcessName: "",
@@ -57,6 +60,15 @@ export default {
     methods: {
         showModal(){
             processSelectorModal.style.display = 'block'
+            if(this.process){
+                let index = this.processes.findIndex((p) => p._id == process._id);
+
+                if(index >= 0){
+                    this.processes[index] = this.process;
+                }
+
+                this.select(index);
+            }
         },
         hideModal(){
             processSelectorModal.style.display = 'none'
@@ -76,6 +88,7 @@ export default {
             if(this.processSelected){
                 this.$emit('chosenProcess', this.processSelected)
                 this.hideModal();
+                this.select(-1);
             }
         },
         select(index){
@@ -85,8 +98,13 @@ export default {
                 this.processSelected = this.processes[index];
             }
         },
+        selectById(id){
+            let index = this.processes.findIndex((p) => p._id == id);
+
+            this.select(index);
+        },
         isActive(index){
-            return this.processes[index] == this.processSelected
+            return this.processSelected && this.processes[index]._id == this.processSelected._id
         },
         remove(index){
             // this.$emit('removeProcess', this.processes[index])
@@ -125,10 +143,21 @@ export default {
     border-radius: 0.4rem;
 }
 
+#processSelectorModal .modal-body{
+    max-height: 600px;
+    overflow-y: auto;
+}
+
 .list-group-item.active {
     z-index: 2;
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
+    color: black;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.125);
+    border-left: 5px solid #f26767;
+}
+
+.list-group-item{
+    max-height: 78px;
+    overflow-y: hidden;
 }
 </style>

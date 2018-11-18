@@ -48,8 +48,8 @@ module.exports.save = function(application, req, res){
 }
 
 module.exports.update = function(application, req, res){
-    application.app.models.process.findById(req.body.id, (err, processes) => {
-        if(err){
+    application.app.models.process.findById(req.body._id, (err, processes) => {
+        if(err || !processes){
             console.log(err);
             res.status(400);
             res.json(err);

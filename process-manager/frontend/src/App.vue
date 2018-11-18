@@ -5,14 +5,14 @@
     <div class="container">
       <h2>
         <span>{{ titulo + " - "}}</span>        
-        <span class="upFirstLetter">{{processName}}</span>
+        <span v-if="process" class="upFirstLetter">{{process.name}}</span>
       </h2>
       <div class="container-body">
         <!-- <intro-comp @titleChanged="setTitle"/> -->
-        <router-view @titleChanged="setTitle"></router-view>
+        <router-view @titleChanged="setTitle" @processChanged="chosen" :processSelected="process"></router-view>
       </div>
     </div>
-    <process-selector @chosenProcess="chosen"/>
+    <process-selector ref="processSelector" @chosenProcess="chosen" :process="process"/>
   </div>
 
 </template>
@@ -26,13 +26,15 @@ import navbarSuperior from '@/components/navbar';
 // import guia from '@/components/guide';
 import processSelector from '@/components/processSelector'
 
+import processService from '@/service/process.service';
+
 export default {
   name: 'app',
   components: {navbarSuperior, processSelector},
   data(){
     return {
       titulo: "",
-      processName: ""
+      process: null
     }
   },
   methods: {
@@ -40,11 +42,12 @@ export default {
       this.titulo = title
     },
     processosSelection(){
-      processSelectorModal.style.display = 'block'
+      // processSelectorModal.style.display = 'block'
+      this.$refs.processSelector.showModal();
     },
     chosen(process){
       // alert(process.name);
-      this.processName = process.name;
+      this.process = process;
       localStorage.setItem("process", JSON.stringify(process));
       // localStorage.setItem("process", process.name)
       // localStorage.setItem("process.id", process.id)
@@ -53,9 +56,15 @@ export default {
   mounted(){
         let process = JSON.parse(localStorage.getItem("process"));
         if(!process){
-            this.processosSelection();
+          this.processosSelection();
         }else{
-          this.processName = process.name;
+          processService.find(process, (response) => {
+            if(!response.data){
+              this.processosSelection();
+            }else{
+              this.process = process;
+            }              
+          });
         }
     }
 }
@@ -88,5 +97,17 @@ export default {
 } */
 .upFirstLetter{
   text-transform: capitalize;
+}
+textarea,.red-border-left{
+    border: none;
+    border-left: 5px solid #f36767;
+    border-radius: .25rem;
+    padding: 6px 12px;
+}
+textarea,.red-border-left:focus{
+    border: none;
+    border: 2px solid #f36767;
+    border-left: 5px solid #f36767;
+    box-shadow: none
 }
 </style>

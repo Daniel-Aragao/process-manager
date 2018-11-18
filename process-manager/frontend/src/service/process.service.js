@@ -7,6 +7,10 @@ export default {
     http.get('/process').then(cb).catch(catchErrors);
   },
 
+  find: (process, cb) => {
+    http.get('/process/id/'+process._id).then(cb).catch(catchErrors);
+  },
+
   add: (process, cb) => {
     http.post('/process/add', process).then(cb).catch(catchErrors);
   },
@@ -16,7 +20,7 @@ export default {
   },
 
   edit: (process, cb) => {
-    http.post('/process/update')
+    http.post('/process/update', process).then(cb).catch(catchErrors);
   }
 
 }
