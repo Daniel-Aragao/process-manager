@@ -59,7 +59,7 @@ export default {
     },
     methods: {
         showModal(){
-            processSelectorModal.style.display = 'block'
+            this.$refs.processSelectorModal.style.display = 'block'
             if(this.process){
                 let index = this.processes.findIndex((p) => p._id == process._id);
 
@@ -71,7 +71,7 @@ export default {
             }
         },
         hideModal(){
-            processSelectorModal.style.display = 'none'
+            this.$refs.processSelectorModal.style.display = 'none'
         },
         newProcess(){
             let self = this;
@@ -115,7 +115,7 @@ export default {
             processService.remove(toRemove, function(response){
                 console.log(response);
 
-                let removed = self.processes.splice(index, 1)[0];
+                self.processes.splice(index, 1)[0];
                 self.justRemoved = true;
                 self.processSelected = null;
             });
