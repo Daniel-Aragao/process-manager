@@ -4,7 +4,7 @@ var ProcessSchema = new mongoose.Schema({
     // _id: mongoose.Schema.Types.ObjectId,
     name: String,
     team: [{type:mongoose.Schema.Types.ObjectId, ref: 'Collaborator'}],
-    project: {type:mongoose.Schema.Types.ObjectId, ref: 'Project', required: [true, 'Informe o código do projeto']},
+    project: {type: Number, ref: 'Project', required: [true, 'Informe o código do projeto']},
     description: String,
     artifact: [{type:mongoose.Schema.Types.ObjectId, ref: 'Artifact'}],
     tasks: [{type:mongoose.Schema.Types.ObjectId, ref: 'Task'}],

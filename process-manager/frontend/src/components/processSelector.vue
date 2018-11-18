@@ -17,12 +17,19 @@
                         </div>
                     </div>
                 </div>
-                <ul class="list-group">
-                    <li class="list-group-item" v-for="(process, index) in processes" @click="select(index)" 
-                        :class="{'active': isActive(index)}">
-                        {{process.name}}
+                <ul v-if="processes && processes.length" class="list-group">
+                    <li 
+                    v-for="(process, index) in processes" @click="select(index)" 
+                    class="list-group-item list-group-item-action flex-column align-items-start" 
+                        :class="{'active': isActive(index)}">                        
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{process.name}}</h5>
+                            <span class="close" @click="remove(index)">&times;</span>
+                        </div>
+                        <small>{{process.description}}</small>
                     </li>
                 </ul>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" @click="choose">Escolher</button>
@@ -34,49 +41,92 @@
 </template>
 
 <script>
+import processService from '@/service/process.service';
+
+
 export default {
     name: 'process-selector',
+    props:{
+        process: Object
+    },
     data() {
         return {
             newProcessName: "",
             processSelected: null,
-            processes: [
-                {
-                    name:'1'
-                },
-                {
-                    name:'2'
-                }
-            ]
+            justRemoved: false,
+            processes: []
         }
     },
     methods: {
         showModal(){
-            $(processSelectorModal).show();
+            this.$refs.processSelectorModal.style.display = 'block'
+            if(this.process){
+                let index = this.processes.findIndex((p) => p._id == process._id);
+
+                if(index >= 0){
+                    this.processes[index] = this.process;
+                }
+
+                this.select(index);
+            }
         },
         hideModal(){
-            $(processSelectorModal).hide();
+            this.$refs.processSelectorModal.style.display = 'none'
         },
         newProcess(){
-            this.processes.push({name:this.newProcessName});
-            this.$emit('newProcess', this.newProcessName);
-            this.newProcessName = '';
+            let self = this;
+
+            let newProcess = { name:this.newProcessName, project: 20 };
+            // this.$emit('newProcess', this.newProcessName);
+
+            processService.add(newProcess, function(response){
+                self.processes.push(response.data);
+                self.newProcessName = '';
+            });
         },
         choose(){
             if(this.processSelected){
                 this.$emit('chosenProcess', this.processSelected)
                 this.hideModal();
+                this.select(-1);
             }
         },
         select(index){
-            this.processSelected = this.processes[index];
+            if(this.justRemoved){
+                this.justRemoved = false;
+            }else{
+                this.processSelected = this.processes[index];
+            }
+        },
+        selectById(id){
+            let index = this.processes.findIndex((p) => p._id == id);
+
+            this.select(index);
         },
         isActive(index){
-            return this.processes[index] == this.processSelected
+            return this.processSelected && this.processes[index]._id == this.processSelected._id
+        },
+        remove(index){
+            // this.$emit('removeProcess', this.processes[index])
+            let self = this;
+
+            let toRemove = self.processes[index];
+
+            processService.remove(toRemove, function(response){
+                console.log(response);
+
+                self.processes.splice(index, 1)[0];
+                self.justRemoved = true;
+                self.processSelected = null;
+            });
         }
     },
-    // mounted(){
-    // }
+    mounted(){
+        let self = this;
+        processService.list(function(response) {
+            self.processes = response.data;
+        });
+    }
 }
 </script>
 
@@ -93,10 +143,21 @@ export default {
     border-radius: 0.4rem;
 }
 
+#processSelectorModal .modal-body{
+    max-height: 600px;
+    overflow-y: auto;
+}
+
 .list-group-item.active {
     z-index: 2;
-    color: #fff;
-    background-color: #343a40;
-    border-color: #343a40;
+    color: black;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.125);
+    border-left: 5px solid #f26767;
+}
+
+.list-group-item{
+    max-height: 78px;
+    overflow-y: hidden;
 }
 </style>
