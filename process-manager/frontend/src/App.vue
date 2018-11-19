@@ -43,6 +43,7 @@ export default {
     }
   },
   mounted(){
+        localStorage.setItem("projectId", 1);
         let process = JSON.parse(localStorage.getItem("process"));
         if(!process){
           this.processosSelection();

@@ -17,19 +17,23 @@ export default new Router({
     },
     {
       path: '/artefato',
-      component: artefato
+      component: artefato,
+      props: true
     },
     {
       path: '/tarefa',
-      component: tarefa
+      component: tarefa,
+      props: true
     },
     {
       path: '/ferramenta',
-      component: ferramenta
+      component: ferramenta,
+      props: true
     },
     {
       path: '/guia',
-      component: guia
+      component: guia,
+      props: true
     }
   ]
 })

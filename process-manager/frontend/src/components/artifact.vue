@@ -3,99 +3,103 @@
   <div class="col-lg-12 edition-father">
     <div class="edition">
           <button class="btn btn-danger" @click="showModal">
-              Novo
+                Novo
           </button>
       </div>
   </div>
   <div class="modal" ref="artifactModal">
     <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">{{edition? "Editar":'Criar'}} artefato</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="cancel">
-            <span aria-hidden="true">&times;</span>
-          </button> 
-        </div>
-        <div class="modal-body">
-          <form ref="artifactForm">
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="inputName">Nome</label>
-                  <input type="email" class="form-control" id="inputName" v-model="Artifact.name" placeholder="Nome">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{edition? "Editar":'Criar'}} artefato</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="hideModal">
+                <span aria-hidden="true">&times;</span>
+                </button> 
+            </div>
+            <div class="modal-body">
+                <form ref="artifactForm">
+                <div class="row">
+                    <div class="col-6">
+                    <div class="form-group">
+                        <label for="inputName">Nome</label>
+                        <input type="email" class="form-control" id="inputName" v-model="artifact.name">
+                    </div>
+
+                    </div>
+                    <div class="col-6">
+                    <div class="form-group">
+                        <label >Tipo de Artefato</label>
+                        <select class="form-control">
+                            <option></option>
+                            <option>Guia</option>
+                            <option>Código</option>
+                        </select>
+                    </div>
+                    </div>
                 </div>
 
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="inputState">Tipo de Artefato</label>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
+                <div class="row">
+                    <div class="col-6">
+                    <div class="form-group">
+                        <label >Detalhes</label>
+                        <input type="email" class="form-control" id="inputEmail4">
+                    </div>          
+                    </div>
+                    <div class="col-6">
+                    <div class="form-group">
+                        <label >Processo</label>
+                        <input type="text" class="form-control" v-model="process.name" disabled>
+                        <!-- <select class="form-control" multiple>
+                            <option v-for="process in processes" :value="process._id">
+                                {{process.name}}
+                            </option>
+                        </select> -->
+                    </div>
+                    </div>
                 </div>
-              </div>
+                <div class="row">
+                    <div class="col-6">
+                    <div class="form-group">
+                        <label >Tarefa</label>
+                        <select class="form-control" multiple>
+                            <option v-for="task in tasks" :value="task._id">
+                                {{task.name}}
+                            </option>
+                        </select>            
+                    </div>
+                    </div>
+                    <!-- <div class="col-6">
+                    <div class="form-group">
+                        <label class="col-12">&emsp;</label>
+                        <button type="submit" class="btn btn-danger" @click="addArtifact()">Salvar</button>
+                    </div>
+                    </div> -->
+                </div>
+                </form>
             </div>
-
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="inputEmail4">Detalhes</label>
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-                </div>          
-              </div>
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="inputState">Processo</label>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>
-                </div>
-              </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" @click="hideModal">Cancelar</button>
+                <button type="button" class="btn btn-danger" @click="addArtifact">Salvar</button>
             </div>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-group">
-                  <label for="inputState">Tarefa</label>
-                  <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                  </select>            
-                </div>
-              </div>
-              <!-- <div class="col-6">
-                <div class="form-group">
-                  <label class="col-12">&emsp;</label>
-                  <button type="submit" class="btn btn-danger" @click="addArtifact()">Salvar</button>
-                </div>
-              </div> -->
-            </div>
-          </form>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-dark" @click="cancel">Cancelar</button>
-          <button type="button" class="btn btn-danger" @click="addArtifact">Salvar</button>
-        </div>
-      </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" v-if="this.processSelected">
     <table class="table">
       <thead>
         <tr>
-          <th>Nome</th>
-          <th>Detalhes</th>
-          <th>Tipo</th>
-          <th>Tarefa</th>
+            <th>Nome</th>
+            <th>Detalhes</th>
+            <th>Tipo</th>
+            <th>Tarefa</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="artifact in artifacts">
-          <td>{{artiface.name}}</td>
-          <td>{{artifact.description}}</td>
-          <td>{{artifact.eTypeArtifact}}</td>
-          <td>{{artifact.tasks? artifact.tasks.join(', '): ''}}</td>
+        <tr v-for="artifact in this.processSelected.artifacts">
+            <td>{{artifact.name}}</td>
+            <td>{{artifact.description}}</td>
+            <td>{{artifact.eTypeArtifact}}</td>
+            <td>{{artifact.tasks? artifact.tasks.join(', '): ''}}</td>
         </tr>
       </tbody>
     </table>
@@ -105,59 +109,57 @@
 
 <script>
 import artifactService from '@/service/artifact.service';
+import taskService from '@/service/task.service';
 
 export default {
     name: 'artefato',
     props: {
-      processSelected: Object
+        processSelected: Object
     },
     data(){
         return {
-          Artifact: {name: '', eTypeArtifact: '', details: '', process: {}, tasks: [] },
-          edition: false,
-          artifacts: []
+            artifact: {},
+            process: {},
+            tasks: [],
+            edition: false
         }
     },  
     methods: {
-      showModal(){
-        this.$refs.artifactModal.style.display = 'block'
-          
-      },
-      hideModal(){
-        this.$refs.artifactModal.style.display = 'none'
-      },
-      cancel(){
-        this.$refs.artifactForm.reset();
-        this.hideModal();
-      },
-      save(){
-        this.hideModal();
-      },
-      addArtifact() {
-        const newArtifact = {
-        name: this.Artifact.name,
-        eTypeArtifact: this.Artifact.this.Artifact.name,
-        details: this.Artifact.details,
-        process: this.Artifact.process,
-        tasks: this.Artifact.task
-      }
-      console.log(newArtifact)
-      artifactService.add(newArtifact).then((response) => {
-      console.log(response)
-      }).catch((error) => {
-          console.log(error)
-        })
-      },
-      removeArtifact(index) {
-        artifactService.add(newArtifact).then((response) => {
-        console.log(response)
-        }).catch((error) => {
-            console.log(error)
-          })
-      }
+        showModal(){
+            let projectId = Number(localStorage.getItem("projectId"));
+            this.process = {};
+            this.process.name = this.processSelected? this.processSelected.name : '';
+
+            taskService.findByProcess(this.processSelected._id, (response)=>{
+                this.tasks = response.data;
+                this.$refs.artifactModal.style.display = 'block';     
+            });
+        },
+        hideModal(){
+            this.$refs.artifactForm.reset();
+            this.$refs.artifactModal.style.display = 'none';
+        },
+        save(){
+            this.hideModal();
+        },
+        addArtifact() {
+            if(this.artifact){
+                this.artifact.process = this.processSelected._id;
+
+                artifactService.add(this.artifact, response => {
+                    this.hideModal();
+                });
+            }
+        },
+        removeArtifact(index) {        
+            artifactService.add(newArtifact, response => {
+                console.log(response)
+            });
+        }
     },
     mounted(){
-      this.$emit('titleChanged', 'Artefato');
+        this.$emit('titleChanged', 'Artefato');
+        // Number(localStorage.getItem("projectId"))
     }
 }
 </script>

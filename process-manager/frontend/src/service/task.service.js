@@ -7,6 +7,10 @@ export default {
     http.get('/task').then(cb).catch(catchErrors);
   },
 
+  findByProcess: (id, cb) => {
+    http.get('/task/'+id).then(cb).catch(catchErrors);
+  },
+
   listById: (task, cb) => {
     http.get('/task/id/'+task._id).then(cb).catch(catchErrors);
   },

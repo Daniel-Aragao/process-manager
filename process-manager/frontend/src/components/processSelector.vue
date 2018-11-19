@@ -75,7 +75,7 @@ export default {
         newProcess(){
             let self = this;
 
-            let newProcess = { name:this.newProcessName, project: 1 };
+            let newProcess = { name:this.newProcessName, project: Number(localStorage.getItem("projectId")) };
             // this.$emit('newProcess', this.newProcessName);
 
             processService.add(newProcess, function(response){
@@ -85,9 +85,11 @@ export default {
         },
         choose(){
             if(this.processSelected){
-                this.$emit('chosenProcess', this.processSelected)
-                this.hideModal();
-                this.select(-1);
+                processService.find(this.processSelected, (response) => {
+                    this.$emit('chosenProcess', response.data)
+                    this.hideModal();
+                    this.select(-1);
+                });
             }
         },
         select(index){
@@ -111,8 +113,6 @@ export default {
             let toRemove = self.processes[index];
 
             processService.remove(toRemove, function(response){
-                console.log(response);
-
                 self.processes.splice(index, 1)[0];
                 self.justRemoved = true;
                 self.processSelected = null;
