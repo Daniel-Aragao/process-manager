@@ -8,7 +8,7 @@
       </div>
   </div>
   <div class="modal" ref="artifactModal">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">{{edition? "Editar":'Criar'}} artefato</h5>
@@ -135,19 +135,25 @@ export default {
       },
       addArtifact() {
         const newArtifact = {
-          name: this.Artifact.name,
-          eTypeArtifact: this.Artifact.this.Artifact.name,
-          details: this.Artifact.details,
-          process: this.Artifact.process,
-          tasks: this.Artifact.task
-        }
-        console.log(newArtifact)
-        artifactService.add(newArtifact).then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
+        name: this.Artifact.name,
+        eTypeArtifact: this.Artifact.this.Artifact.name,
+        details: this.Artifact.details,
+        process: this.Artifact.process,
+        tasks: this.Artifact.task
+      }
+      console.log(newArtifact)
+      artifactService.add(newArtifact).then((response) => {
+      console.log(response)
+      }).catch((error) => {
           console.log(error)
         })
+      },
+      removeArtifact(index) {
+        artifactService.add(newArtifact).then((response) => {
+        console.log(response)
+        }).catch((error) => {
+            console.log(error)
+          })
       }
     },
     mounted(){

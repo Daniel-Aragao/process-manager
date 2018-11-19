@@ -37,11 +37,11 @@
 import processService from '@/service/process.service';
 
 
-export default {    
+export default {
     name: 'intro-comp',
     props:{
         processSelected: Object
-    },  
+    },
     data() {
         return {
             process: null,

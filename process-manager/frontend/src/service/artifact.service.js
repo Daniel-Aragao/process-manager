@@ -1,29 +1,25 @@
 import { http } from './config'
+import catchErrors from './catchErrors.service';
 
 export default {
 
-  listAll:() => {
-    return http.get('artifacts');
+  listAll:(cb) => {
+    http.get('/artifact').then(cb).catch(catchErrors);
   },
 
-  listById:(id) => {
-    return http.post(id);
+  listById:(id, cb) => {
+    http.get('/artifact/id/'+artifact._id).then(cb).catch(catchErrors);
   },
 
-  listByProcess:(process) => {
-    return http.get(process);
+  add: (artifact, cb) => {
+    http.post('/artifact/add', artifact).then(cb).catch(catchErrors);
   },
 
-  add:(artifact) => {
-    return http.post(artifact);
+  remove: (artifact, cb) => {
+    http.post('/artifact/remove', {id: artifact._id}).then(cb).catch(catchErrors);
   },
 
-  remove:(artifact) => {
-    return http.post(artifact);
-  },
-
-  update:(artifact) => {
-    return http.post(artifact);
+  update: (artifact, cb) => {
+    http.post('/artifact/update', artifact).then(cb).catch(catchErrors);
   }
-
 }

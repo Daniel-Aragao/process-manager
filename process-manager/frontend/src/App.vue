@@ -3,7 +3,7 @@
     <navbar-superior @processosSelection="processosSelection"/>
     <div class="container">
       <h2>
-        <span>{{ titulo + " - "}}</span>        
+        <span>{{ titulo + " - "}}</span>
         <span v-if="process" class="upFirstLetter">{{process.name}}</span>
       </h2>
       <div class="container-body">
@@ -23,7 +23,7 @@ import processService from '@/service/process.service';
 
 export default {
   name: 'app',
-  components: {navbarSuperior, processSelector},
+  components: {navbarSuperior,processSelector},
   data(){
     return {
       titulo: "",
@@ -53,7 +53,7 @@ export default {
               this.processosSelection();
             }else{
               this.process = process;
-            }              
+            }
           });
         }
     }
