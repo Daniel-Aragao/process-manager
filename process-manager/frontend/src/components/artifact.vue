@@ -1,36 +1,59 @@
 <template>
   <div>
     <form>
-      <div class="form-row">
-        <div class="form-group col-md-6">
-
-          <label for="inputName">Nome</label>
-          <input type="email" class="form-control" id="inputName" v-model="Artifact.name" placeholder="Nome">
-
-          <label for="inputState">Tipo de Artefato</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-
-          <label for="inputEmail4">Detalhes</label>
-          <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
-
-          <label for="inputState">Processo</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
-
-          <label for="inputState">Tarefa</label>
-          <select id="inputState" class="form-control">
-            <option selected>Choose...</option>
-            <option>...</option>
-          </select>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="inputName">Nome</label>
+            <input type="email" class="form-control" id="inputName" v-model="Artifact.name" placeholder="Nome">
+          </div>
 
         </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="inputState">Tipo de Artefato</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary" @click="addArtifact()">Salvar</button>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="inputEmail4">Detalhes</label>
+            <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+          </div>          
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label for="inputState">Processo</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label for="inputState">Tarefa</label>
+            <select id="inputState" class="form-control">
+              <option selected>Choose...</option>
+              <option>...</option>
+            </select>            
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="col-12">&emsp;</label>
+            <button type="submit" class="btn btn-danger" @click="addArtifact()">Salvar</button>
+          </div>
+        </div>
+      </div>
     </form>
   </div>
 </template>
