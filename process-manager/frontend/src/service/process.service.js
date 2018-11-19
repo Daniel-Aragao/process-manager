@@ -7,6 +7,10 @@ export default {
     http.get('/process').then(cb).catch(catchErrors);
   },
 
+  findByProject: (id, cb) => {
+    http.get('process/'+id).then(cb).catch(catchErrors);
+  },
+
   find: (process, cb) => {
     http.get('/process/id/'+process._id).then(cb).catch(catchErrors);
   },

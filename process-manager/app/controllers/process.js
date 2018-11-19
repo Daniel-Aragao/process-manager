@@ -23,13 +23,27 @@ module.exports.index = function(application, req, res){
 }
 
 module.exports.find = function(application, req, res){
-    application.app.models.process.findById(req.params.id, (err, processes) => {
+    application.app.models.process.findById(req.params.id, (err, process) => {
         if(err){
             console.log(err);
             res.status(400);
             res.json(err);
         }else{
-            res.json(processes);
+            if(process){
+                application.app.models.artifact.find({process: process._id}, (err, artifacts) => {
+                    if(err){
+                        console.log(err);
+                        res.status(400);
+                        res.json(err);
+                    }else{
+                        let p = process.toObject();
+                        p.artifacts = artifacts;
+                        res.json(p);
+                    }
+                });
+            }else{
+                res.json(process);                
+            }            
         }
     });
 }

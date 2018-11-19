@@ -33,12 +33,13 @@ module.exports.find = function(application, req, res){
 
 module.exports.save = function(application, req, res){
     let artifact = new application.app.models.artifact(req.body);
-    artifact.save((err, artifacts) => {
+
+    artifact.save((err, artifact) => {
         if(err){
-          res.status(400);
-          res.json(err);
+            res.status(400);
+            res.json(err);
         }else{
-            res.json(artifacts);
+            res.json(artifact);
         }
     });
 }
