@@ -30,15 +30,15 @@ module.exports.find = function(application, req, res){
             res.json(err);
         }else{
             if(process){
-
                 application.app.models.artifact.find({process: process._id}, (err, artifacts) => {
                     if(err){
                         console.log(err);
                         res.status(400);
                         res.json(err);
                     }else{
-                        process.artifacts = artifacts;
-                        res.json(process);
+                        let p = process.toObject();
+                        p.artifacts = artifacts;
+                        res.json(p);
                     }
                 });
             }else{

@@ -3,11 +3,11 @@ import catchErrors from './catchErrors.service';
 
 export default {
 
-  listAll:(cb) => {
+  list:(cb) => {
     http.get('/artifact').then(cb).catch(catchErrors);
   },
 
-  listById:(id, cb) => {
+  findtById:(artifact, cb) => {
     http.get('/artifact/id/'+artifact._id).then(cb).catch(catchErrors);
   },
 

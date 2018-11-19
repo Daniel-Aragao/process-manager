@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var ArtifactSchema = new mongoose.Schema({
   // _id: mongoose.Schema.Types.ObjectId,
   name: String,
-  eTypeArtifact: {type: String, enum: ['GUIA','CODIGO']},
+  eTypeArtifact: {type: String, enum: ['Guia','Código']},
   details: String,
   process: {type: mongoose.Schema.Types.ObjectId, ref: 'Process', required: [true, 'Informe o código do processo']},
   tasks: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}]

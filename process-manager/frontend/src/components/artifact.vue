@@ -29,7 +29,7 @@
                     <div class="col-6">
                     <div class="form-group">
                         <label >Tipo de Artefato</label>
-                        <select class="form-control">
+                        <select class="form-control" v-model="artifact.eTypeArtifact">
                             <option></option>
                             <option>Guia</option>
                             <option>Código</option>
@@ -42,7 +42,7 @@
                     <div class="col-6">
                     <div class="form-group">
                         <label >Detalhes</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                        <input class="form-control" v-model="artifact.description">
                     </div>          
                     </div>
                     <div class="col-6">
@@ -61,7 +61,7 @@
                     <div class="col-6">
                     <div class="form-group">
                         <label >Tarefa</label>
-                        <select class="form-control" multiple>
+                        <select class="form-control" multiple v-model="artifact.tasks">
                             <option v-for="task in tasks" :value="task._id">
                                 {{task.name}}
                             </option>
@@ -118,7 +118,7 @@ export default {
     },
     data(){
         return {
-            artifact: {},
+            artifact: {tasks: []},
             process: {},
             tasks: [],
             edition: false
@@ -126,7 +126,6 @@ export default {
     },  
     methods: {
         showModal(){
-            let projectId = Number(localStorage.getItem("projectId"));
             this.process = {};
             this.process.name = this.processSelected? this.processSelected.name : '';
 
@@ -145,20 +144,20 @@ export default {
         addArtifact() {
             if(this.artifact){
                 this.artifact.process = this.processSelected._id;
-
-                artifactService.add(this.artifact, response => {
+                
+                artifactService.add(this.artifact, () => {
                     this.hideModal();
                 });
             }
         },
-        removeArtifact(index) {        
-            artifactService.add(newArtifact, response => {
-                console.log(response)
-            });
-        }
+        // removeArtifact(index) {        
+        //     // artifactService.add(newArtifact, response => {
+        //     //     console.log(response)
+        //     // });
+        // }
     },
     mounted(){
-        this.$emit('titleChanged', 'Artefato');
+        this.$emit('titleChanged', 'Artefatos');
         // Number(localStorage.getItem("projectId"))
     }
 }
