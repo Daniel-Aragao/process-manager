@@ -62,7 +62,7 @@
                     <div class="form-group">
                         <label >Tarefa</label>
                         <select class="form-control" multiple v-model="artifact.tasks">
-                            <option v-for="task in tasks" :value="task._id">
+                            <option v-for="task in tasks" v-bind:key="task._id">
                                 {{task.name}}
                             </option>
                         </select>
@@ -95,7 +95,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="artifact in this.processSelected.artifacts">
+        <tr v-for="artifact in this.processSelected.artifacts" v-bind:key="artifact._id">
             <td>{{artifact.name}}</td>
             <td>{{artifact.description}}</td>
             <td>{{artifact.eTypeArtifact}}</td>
@@ -104,6 +104,7 @@
       </tbody>
     </table>
   </div>
+</div>
 </template>
 
 <script>
