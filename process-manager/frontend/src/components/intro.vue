@@ -2,14 +2,12 @@
     <div>
         <div class="col-lg-12 edition-father">
             <div class="edition">
-                <div class="edit-btn btn btn-danger" v-if="!editMode" @click="setEditMode">
-                    <span class="iconic iconic-pencil" title="pencil" aria-hidden="true"></span>
+                <button class="edit-btn btn btn-danger" v-if="!editMode" @click="setEditMode">
                     Editar
-                </div>
-                <div v-else @click="saveUpdate" class="btn btn-danger">
-                    <span class="iconic iconic-check" title="check" aria-hidden="true"></span>
+                </button>
+                <button v-else @click="saveUpdate" class="btn btn-danger">
                     Salvar
-                </div>
+                </button>
             </div>
         </div>
         <div>
@@ -52,9 +50,6 @@ export default {
     },
     methods: {
         setEditMode(){
-            // this.process._id = this.processSelected._id;
-            // this.process.description = this.processSelected.description;
-            // this.process.name = this.processSelected.name;
             this.process = this.processSelected;
             this.editMode = true;
         },

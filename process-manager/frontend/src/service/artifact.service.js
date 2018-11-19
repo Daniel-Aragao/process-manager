@@ -7,7 +7,7 @@ export default {
     http.get('/artifact').then(cb).catch(catchErrors);
   },
 
-  listById:(id) => {
+  listById:(id, cb) => {
     http.get('/artifact/id/'+artifact._id).then(cb).catch(catchErrors);
   },
 
