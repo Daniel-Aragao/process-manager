@@ -87,7 +87,7 @@ export default {
           console.log(error)
         })
       },
-      removeArtifact(index) {
+      removeArtifact() {
         artifactService.add(newArtifact).then((response) => {
         console.log(response)
         }).catch((error) => {
