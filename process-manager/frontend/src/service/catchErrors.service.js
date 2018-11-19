@@ -1,3 +1,3 @@
-export default () => {
-  //console.log(err);
-};
+export default (err => {
+  console.log(err);
+});

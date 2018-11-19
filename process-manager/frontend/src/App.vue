@@ -19,7 +19,7 @@
 
 <script>
 import navbarSuperior from '@/components/navbar';
-import dropdown from '@components/dropdown';
+//import dropdown from '@components/dropdownCheckBox';
 // import introComp from '@/components/intro'
 // import artefato from '@/components/artifact';
 // import tarefa from '@/components/task';

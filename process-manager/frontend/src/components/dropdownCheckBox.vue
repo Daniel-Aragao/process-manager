@@ -1,5 +1,5 @@
 <template>
-   <div id="app" class="checkbox-select">
+   <div id="selectDropDown" class="checkbox-select">
     <div class="checkbox-select__trigger" :class="{ isActive: activeTrigger }" @click="showDropdown">
       <span class="checkbox-select__title">Select property type</span>
       <svg viewBox="0 0 129 129"><path d="M121.3 34.6c-1.6-1.6-4.2-1.6-5.8 0l-51 51.1-51.1-51.1c-1.6-1.6-4.2-1.6-5.8 0-1.6 1.6-1.6 4.2 0 5.8l53.9 53.9c.8.8 1.8 1.2 2.9 1.2 1 0 2.1-.4 2.9-1.2l53.9-53.9c1.7-1.6 1.7-4.2.1-5.8z"/></svg>
@@ -63,6 +63,10 @@ export default {
     }
   },
   methods: {
+    methods: {
+    dropdownCheckBox(){
+            this.$emit("dropdownCheckBox")
+    },
     selectAll: function() {
       this.checkedFilters = [];
       this.selectAllText = this.selectAllText == "Select All" ? 'Clear All' : 'Select All';
@@ -111,7 +115,7 @@ export default {
 </script>
 
 <style>
-body {
+#selectDropDown {
   font-family: "Roboto Slab", serif;
   filter: progid:DXImageTransform.Microsoft.gradient(
       startColorstr="#8f24ed",
