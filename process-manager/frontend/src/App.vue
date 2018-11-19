@@ -100,15 +100,22 @@ export default {
   text-transform: capitalize;
 }
 textarea,.red-border-left{
-    border: none;
     border-left: 5px solid #f36767;
     border-radius: .25rem;
     padding: 6px 12px;
 }
 textarea,.red-border-left:focus{
-    border: none;
     border: 2px solid #f36767;
     border-left: 5px solid #f36767;
     box-shadow: none
+}
+
+input.form-control, select.form-control{
+  border-left: 5px solid #f36767;
+}
+input.form-control:focus, select.form-control:focus{
+  border: 2px solid #f36767;
+  border-left: 5px solid #f36767;
+  box-shadow: none;
 }
 </style>
