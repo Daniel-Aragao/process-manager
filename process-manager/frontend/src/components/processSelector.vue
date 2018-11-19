@@ -18,10 +18,10 @@
                         </div>
                     </div>
                     <ul v-if="processes && processes.length" class="list-group">
-                        <li 
-                        v-for="(process, index) in processes" @click="select(index)" 
-                        class="list-group-item list-group-item-action flex-column align-items-start" 
-                            :class="{'active': isActive(index)}">                        
+                        <li
+                        v-for="(process, index) in processes" @click="select(index)"
+                        class="list-group-item list-group-item-action flex-column align-items-start"
+                            :class="{'active': isActive(index)}">
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">{{process.name}}</h5>
                                 <span class="close" @click="remove(index)">&times;</span>
