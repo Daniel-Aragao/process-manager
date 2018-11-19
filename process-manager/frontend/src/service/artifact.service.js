@@ -2,7 +2,6 @@ import { http } from './config'
 import catchErrors from './catchErrors.service';
 
 export default {
-export default {
 
   listAll:(cb) => {
     http.get('/artifact').then(cb).catch(catchErrors);
@@ -23,5 +22,4 @@ export default {
   update: (artifact, cb) => {
     http.post('/artifact/update', artifact).then(cb).catch(catchErrors);
   }
-
 }

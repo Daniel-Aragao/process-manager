@@ -19,7 +19,7 @@
 
 <script>
 import navbarSuperior from '@/components/navbar';
-//import dropdown from '@components/dropdownCheckBox';
+import dropdowncheckbox from '@/components/dropdowncheckbox';
 // import introComp from '@/components/intro'
 // import artefato from '@/components/artifact';
 // import tarefa from '@/components/task';
@@ -31,7 +31,7 @@ import processService from '@/service/process.service';
 
 export default {
   name: 'app',
-  components: {navbarSuperior,processSelector},
+  components: {navbarSuperior,processSelector, dropdowncheckbox},
   data(){
     return {
       titulo: "",

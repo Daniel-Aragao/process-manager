@@ -28,8 +28,7 @@
 <script>
 
 export default {
-    name: 'dropdown-checkbox',
-
+  name: 'dropdowncheckbox',
   data() {
     return {
       filters: [
@@ -53,7 +52,7 @@ export default {
       activeTrigger: false,
       dropdown: false,
       showLoader: false
-    };
+    }
   },
   computed: {
     filteredList() {
@@ -63,7 +62,6 @@ export default {
     }
   },
   methods: {
-    methods: {
     dropdownCheckBox(){
             this.$emit("dropdownCheckBox")
     },

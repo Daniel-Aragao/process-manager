@@ -41,10 +41,13 @@
         <div class="col-6">
           <div class="form-group">
             <label for="inputState">Tarefa</label>
+            <dropdowncheckbox/>
+            <!--
             <select id="inputState" class="form-control">
               <option selected>Choose...</option>
               <option>...</option>
             </select>
+          -->
           </div>
         </div>
         <div class="col-6">
@@ -65,38 +68,36 @@ export default {
     name: 'artefato',
     data(){
         return {
-          Artifact: {name: '', eTypeArtifact: '', details: '', process: null, tasks: [] },
-        },
-        methods: {
-          addArtifact() {
-            const newArtifact = {
-              name: this.Artifact.name,
-              eTypeArtifact: this.Artifact.this.Artifact.name,
-              details: this.Artifact.details,
-              process: this.Artifact.process,
-              tasks: this.Artifact.task
-            }
-            console.log(newArtifact)
-            artifactService.add(newArtifact).then((response) => {
-              console.log(response)
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-          },
-          removeArtifact(index) {
-            artifactService.add(newArtifact).then((response) => {
-              console.log(response)
-            })
-            .catch((error) => {
-              console.log(error)
-            })
-          },
-
-        },
-        mounted(){
-        this.$emit('titleChanged', 'Artefato');
+          Artifact: {name: '', eTypeArtifact: '', details: '', process: null, tasks: [] }
+        }
+      },
+    methods: {
+      addArtifact() {
+        const newArtifact = {
+        name: this.Artifact.name,
+        eTypeArtifact: this.Artifact.this.Artifact.name,
+        details: this.Artifact.details,
+        process: this.Artifact.process,
+        tasks: this.Artifact.task
       }
+      console.log(newArtifact)
+      artifactService.add(newArtifact).then((response) => {
+      console.log(response)
+      }).catch((error) => {
+          console.log(error)
+        })
+      },
+      removeArtifact(index) {
+        artifactService.add(newArtifact).then((response) => {
+        console.log(response)
+        }).catch((error) => {
+            console.log(error)
+          })
+      }
+    },
+    mounted(){
+      this.$emit('titleChanged', 'Artefato');
+    }
 }
 </script>
 
