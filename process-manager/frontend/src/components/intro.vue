@@ -54,20 +54,17 @@ export default {
             this.editMode = true;
         },
         saveUpdate(){
-            let process = this.process;
             let self = this;
 
-            processService.edit(process, function(response){
-                // localStorage.setItem('process', JSON.stringify(process));
-                // self.process = process;
-                self.$emit('processChanged', process);
+            processService.edit(self.process, function(response){
+                self.$emit('processChanged', self.process);
                 self.editMode = false;
             });
         }
     },
     mounted(){
         this.$emit('titleChanged', 'Introdução');
-        this.process = JSON.parse(localStorage.getItem('process'));
+        this.process = this.processSelected;
     }
 }
 </script>

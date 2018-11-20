@@ -11,8 +11,8 @@ export default {
     http.get('process/'+id).then(cb).catch(catchErrors);
   },
 
-  find: (process, cb) => {
-    http.get('/process/id/'+process._id).then(cb).catch(catchErrors);
+  find: (id, cb) => {
+    http.get('/process/id/'+id).then(cb).catch(catchErrors);
   },
 
   add: (process, cb) => {

@@ -27,7 +27,8 @@ export default {
   data(){
     return {
       titulo: "",
-      process: null
+      process: null,
+      processId: ""
     }
   },
   methods: {
@@ -39,23 +40,24 @@ export default {
     },
     chosen(process){
       this.process = process;
-      localStorage.setItem("process", JSON.stringify(process));
+      localStorage.setItem("processId", process._id);
     }
   },
   mounted(){
         localStorage.setItem("projectId", 1);
-        let process = JSON.parse(localStorage.getItem("process"));
-        if(!process){
-          this.processosSelection();
+        this.processId = localStorage.getItem("processId");
 
-        }else{
-          processService.find(process, (response) => {
-            if(!response.data){
-              this.processosSelection();
-            }else{
-              this.process = process;
-            }
-          });
+        if(!this.processId){
+            this.processosSelection();
+
+        }else{          
+            processService.find(this.processId, (response) => {
+                if(!response.data){
+                    this.processosSelection();
+                }else{
+                    this.process = response.data;
+                }
+            });
         }
     }
 }

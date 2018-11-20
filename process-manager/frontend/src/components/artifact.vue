@@ -42,7 +42,7 @@
                     <div class="col-6">
                     <div class="form-group">
                         <label >Detalhes</label>
-                        <input class="form-control" v-model="artifact.description">
+                        <input class="form-control" v-model="artifact.details">
                     </div>
                     </div>
                     <div class="col-6">
@@ -88,18 +88,27 @@
     <table class="table">
       <thead>
         <tr>
-            <th>Nome</th>
-            <th>Detalhes</th>
-            <th>Tipo</th>
-            <th>Tarefa</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Detalhes</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Tarefas</th>
+            <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="artifact in this.processSelected.artifacts" v-bind:key="artifact._id">
-            <td>{{artifact.name}}</td>
-            <td>{{artifact.description}}</td>
+            <td scope="row">{{artifact.name}}</td>
+            <td>{{artifact.details}}</td>
             <td>{{artifact.eTypeArtifact}}</td>
             <td>{{artifact.tasks? artifact.tasks.join(', '): ''}}</td>
+            <td>
+                <button class="btn btn-danger btn-margin" @click="edit(artifact)">
+                    Editar
+                </button>
+                <button class="btn btn-danger" @click="remove(artifact)">
+                    Excluir
+                </button>
+            </td>
         </tr>
       </tbody>
     </table>
@@ -110,6 +119,7 @@
 <script>
 import artifactService from '@/service/artifact.service';
 import taskService from '@/service/task.service';
+// import dropdownCheckBox from '@/components/dropdownCheckBox';
 
 export default {
     name: 'artefato',
@@ -137,19 +147,41 @@ export default {
         hideModal(){
             this.$refs.artifactForm.reset();
             this.$refs.artifactModal.style.display = 'none';
+            this.artifact = {tasks: []};
         },
         save(){
             this.hideModal();
         },
         addArtifact() {
             if(this.artifact){
-                this.artifact.process = this.processSelected._id;
-
-                artifactService.add(this.artifact, () => {
-                    this.hideModal();
-                });
+                if(this.artifact._id){
+                    console.log(this.artifact);
+                    artifactService.update(this.artifact);
+                }else{
+                    this.artifact.process = this.processSelected._id;
+    
+                    artifactService.add(this.artifact, (response) => {
+                        this.hideModal();
+                        let p = this.processSelected;
+                        p.artifacts.push(response.data);
+                    });
+                }
             }
         },
+        edit(artifact) {
+            // artifact
+            this.artifact = artifact;
+            this.showModal();
+        },
+        remove(artifact){
+            this.process = this.processSelected;
+
+            artifactService.remove(artifact, () => {
+                let index = this.processSelected.artifacts.findIndex((a) => a._id == artifact._id);
+                this.processSelected.artifacts.splice(index, 1);
+                this.process = {}                
+            });
+        }
         // removeArtifact(index) {
         //     // artifactService.add(newArtifact, response => {
         //     //     console.log(response)
@@ -163,4 +195,8 @@ export default {
 }
 </script>
 
-<style></style>
+<style>
+.btn-margin{
+    margin-right: 10px;
+}
+</style>

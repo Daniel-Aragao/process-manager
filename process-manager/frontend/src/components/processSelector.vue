@@ -58,9 +58,9 @@ export default {
     },
     methods: {
         showModal(){
-            this.$refs.processSelectorModal.style.display = 'block'
+            
             if(this.process){
-                let index = this.processes.findIndex((p) => p._id == process._id);
+                let index = this.processes.findIndex((p) => p._id == this.process._id);
 
                 if(index >= 0){
                     this.processes[index] = this.process;
@@ -68,6 +68,8 @@ export default {
 
                 this.select(index);
             }
+
+            this.$refs.processSelectorModal.style.display = 'block'
         },
         hideModal(){
             this.$refs.processSelectorModal.style.display = 'none'
@@ -85,7 +87,7 @@ export default {
         },
         choose(){
             if(this.processSelected){
-                processService.find(this.processSelected, (response) => {
+                processService.find(this.processSelected._id, (response) => {
                     this.$emit('chosenProcess', response.data)
                     this.hideModal();
                     this.select(-1);
@@ -112,7 +114,7 @@ export default {
 
             let toRemove = self.processes[index];
 
-            processService.remove(toRemove, function(response){
+            processService.remove(toRemove, function(){
                 self.processes.splice(index, 1)[0];
                 self.justRemoved = true;
                 self.processSelected = null;
