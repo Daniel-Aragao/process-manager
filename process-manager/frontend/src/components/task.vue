@@ -89,11 +89,11 @@
     <table class="table">
       <thead>
         <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Descrição</th>
-            <th scope="col">Tipo</th>
+            <th style="width: 25%" scope="col">Nome</th>
+            <th style="width: 40%" scope="col">Descrição</th>
+            <th style="width: 15%" scope="col">Tipo</th>
+            <th style="width: 20%" scope="col"></th>
             <!-- <th scope="col">Responsável</th> -->
-            <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -106,7 +106,7 @@
                 <button class="btn btn-danger btn-margin btn-sm" @click="edit(task)">
                     Editar
                 </button>
-                <button class="btn btn-danger btn-sm" @click="remove(task)">
+                <button class="btn btn-danger btn-margin btn-sm" @click="remove(task)">
                     Excluir
                 </button>
             </td>

@@ -77,11 +77,11 @@
     <table class="table">
       <thead>
         <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Detalhes</th>
-            <th scope="col">Tipo</th>
-            <th scope="col">Tarefas</th>
-            <th scope="col"></th>
+            <th style="width: 20%" scope="col">Nome</th>
+            <th style="width: 30%" scope="col">Detalhes</th>
+            <th style="width: 10%" scope="col">Tipo</th>
+            <th style="width: 20%" scope="col">Tarefas</th>
+            <th style="width: 20%" scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -94,7 +94,7 @@
                 <button class="btn btn-danger btn-margin btn-sm" @click="edit(artifact)">
                     Editar
                 </button>
-                <button class="btn btn-danger btn-sm" @click="remove(artifact)">
+                <button class="btn btn-danger btn-margin btn-sm" @click="remove(artifact)">
                     Excluir
                 </button>
             </td>
