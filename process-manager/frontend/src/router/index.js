@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import introComp from '@/components/intro';
 import artefato from '@/components/artifact';
-import tarefa from '@/components/task';
+import task from '@/components/task';
 import ferramenta from '@/components/tool';
 import guia from '@/components/guide';
 
@@ -22,7 +22,7 @@ export default new Router({
     },
     {
       path: '/tarefa',
-      component: tarefa,
+      component: task,
       props: true
     },
     {

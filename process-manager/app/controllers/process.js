@@ -36,9 +36,14 @@ module.exports.find = function(application, req, res){
                         res.status(400);
                         res.json(err);
                     }else{
-                        let p = process.toObject();
-                        p.artifacts = artifacts;
-                        res.json(p);
+                        let processObj = process.toObject();
+                        processObj.artifacts = artifacts;
+
+                        application.app.models.task.find({process: process._id}, (err, tasks) => {
+                            processObj.tasks = tasks;
+                            res.json(processObj);
+                        });
+                        
                     }
                 });
             }else{

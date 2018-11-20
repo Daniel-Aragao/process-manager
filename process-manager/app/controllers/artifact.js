@@ -53,6 +53,7 @@ module.exports.update = function(application, req, res){
             artifact.name = req.body.name
             artifact.eTypeArtifact = req.body.eTypeArtifact
             artifact.details = req.body.details
+            artifact.tasks = req.body.tasks
 
             artifact.save((err, artifact) => {
                 if(err){

@@ -22,7 +22,7 @@
                     <div class="col-6">
                     <div class="form-group">
                         <label for="inputName">Nome</label>
-                        <input type="email" class="form-control" id="inputName" v-model="artifact.name">
+                        <input type="text" class="form-control" id="inputName" v-model="artifact.name">
                     </div>
 
                     </div>
@@ -49,11 +49,6 @@
                     <div class="form-group">
                         <label >Processo</label>
                         <input type="text" class="form-control" v-model="process.name" disabled>
-                        <!-- <select class="form-control" multiple>
-                            <option v-for="process in processes" :value="process._id">
-                                {{process.name}}
-                            </option>
-                        </select> -->
                     </div>
                     </div>
                 </div>
@@ -62,18 +57,12 @@
                     <div class="form-group">
                         <label >Tarefa</label>
                         <select class="form-control" multiple v-model="artifact.tasks">
-                            <option v-for="task in tasks" v-bind:key="task._id">
+                            <option v-for="task in tasks" v-bind:value="task._id" >
                                 {{task.name}}
                             </option>
                         </select>
                     </div>
                     </div>
-                    <!-- <div class="col-6">
-                    <div class="form-group">
-                        <label class="col-12">&emsp;</label>
-                        <button type="submit" class="btn btn-danger" @click="addArtifact()">Salvar</button>
-                    </div>
-                    </div> -->
                 </div>
                 </form>
             </div>
@@ -91,16 +80,16 @@
             <th scope="col">Nome</th>
             <th scope="col">Detalhes</th>
             <th scope="col">Tipo</th>
-            <th scope="col">Tarefas</th>
+            <!-- <th scope="col">Tarefas</th> -->
             <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="artifact in this.processSelected.artifacts" v-bind:key="artifact._id">
+        <tr v-for="artifact in processSelected.artifacts" v-bind:key="artifact._id">
             <td scope="row">{{artifact.name}}</td>
             <td>{{artifact.details}}</td>
             <td>{{artifact.eTypeArtifact}}</td>
-            <td>{{artifact.tasks? artifact.tasks.join(', '): ''}}</td>
+            <!-- <td>{{artifact.tasks? artifact.tasks.join(', '): ''}}</td> -->
             <td>
                 <button class="btn btn-danger btn-margin" @click="edit(artifact)">
                     Editar
@@ -119,7 +108,6 @@
 <script>
 import artifactService from '@/service/artifact.service';
 import taskService from '@/service/task.service';
-// import dropdownCheckBox from '@/components/dropdownCheckBox';
 
 export default {
     name: 'artefato',
@@ -136,6 +124,7 @@ export default {
     },
     methods: {
         showModal(){
+            this.edition = false;
             this.process = {};
             this.process.name = this.processSelected? this.processSelected.name : '';
 
@@ -146,11 +135,7 @@ export default {
         },
         hideModal(){
             this.artifact = {tasks: []};
-            // this.$refs.artifactForm.reset();
             this.$refs.artifactModal.style.display = 'none';
-        },
-        save(){
-            this.hideModal();
         },
         addArtifact() {
             if(this.artifact){
@@ -172,6 +157,7 @@ export default {
         edit(artifact) {
             this.artifact = artifact;
             this.showModal();
+            this.edition = true;
         },
         remove(artifact){
             this.process = this.processSelected;
