@@ -45,20 +45,21 @@ module.exports.save = function(application, req, res){
 }
 
 module.exports.update = function(application, req, res){
-    application.app.models.artifact.findById(req.body.id, (err, artifacts) => {
-        if(err){
+    application.app.models.artifact.findById(req.body._id, (err, artifact) => {
+        if(err || artifact == null){
           res.status(400);
           res.json(err);
         }else{
-            artifacts.name = req.body.name
-            artifacts.eTypeArtifact = req.body.eTypeArtifact
-            artifacts.details = req.body.details
+            artifact.name = req.body.name
+            artifact.eTypeArtifact = req.body.eTypeArtifact
+            artifact.details = req.body.details
 
-            artifacts.save((err, artifact) => {
+            artifact.save((err, artifact) => {
                 if(err){
-                    console.log(err);
+                    res.status(400);
+                    res.json(err);
                 }else{
-                    res.json(artifacts);
+                    res.json(artifact);
                 }
             });
         }
@@ -68,8 +69,8 @@ module.exports.update = function(application, req, res){
 module.exports.remove = function(application, req, res){
     application.app.models.artifact.findByIdAndRemove({_id: req.body.id},(err, artifacts) => {
         if(err){
-          res.status(400);
-          res.json(err);
+            res.status(400);
+            res.json(err);
         }else{
             res.json(artifacts);
         }

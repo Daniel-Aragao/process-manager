@@ -145,9 +145,9 @@ export default {
             });
         },
         hideModal(){
-            this.$refs.artifactForm.reset();
-            this.$refs.artifactModal.style.display = 'none';
             this.artifact = {tasks: []};
+            // this.$refs.artifactForm.reset();
+            this.$refs.artifactModal.style.display = 'none';
         },
         save(){
             this.hideModal();
@@ -155,8 +155,9 @@ export default {
         addArtifact() {
             if(this.artifact){
                 if(this.artifact._id){
-                    console.log(this.artifact);
-                    artifactService.update(this.artifact);
+                    artifactService.update(this.artifact, ()=>{
+                        this.hideModal();
+                    });
                 }else{
                     this.artifact.process = this.processSelected._id;
     
@@ -169,7 +170,6 @@ export default {
             }
         },
         edit(artifact) {
-            // artifact
             this.artifact = artifact;
             this.showModal();
         },
@@ -182,15 +182,9 @@ export default {
                 this.process = {}                
             });
         }
-        // removeArtifact(index) {
-        //     // artifactService.add(newArtifact, response => {
-        //     //     console.log(response)
-        //     // });
-        // }
     },
     mounted(){
         this.$emit('titleChanged', 'Artefatos');
-        // Number(localStorage.getItem("projectId"))
     }
 }
 </script>

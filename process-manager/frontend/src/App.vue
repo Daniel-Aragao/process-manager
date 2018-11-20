@@ -23,7 +23,7 @@ import processService from '@/service/process.service';
 
 export default {
   name: 'app',
-  components: {navbarSuperior,processSelector},
+  components: {navbarSuperior, processSelector},
   data(){
     return {
       titulo: "",
