@@ -103,10 +103,10 @@
             <td>{{task.eTypeTask}}</td>
             <!-- <td>{{task.responsible}}</td> -->
             <td>
-                <button class="btn btn-danger btn-margin" @click="edit(task)">
+                <button class="btn btn-danger btn-margin btn-sm" @click="edit(task)">
                     Editar
                 </button>
-                <button class="btn btn-danger" @click="remove(task)">
+                <button class="btn btn-danger btn-sm" @click="remove(task)">
                     Excluir
                 </button>
             </td>

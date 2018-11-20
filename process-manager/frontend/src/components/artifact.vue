@@ -91,10 +91,10 @@
             <td>{{artifact.eTypeArtifact}}</td>
             <td>{{getArtifactTaskArray(artifact, processSelected.tasks)}}</td>
             <td>
-                <button class="btn btn-danger btn-margin" @click="edit(artifact)">
+                <button class="btn btn-danger btn-margin btn-sm" @click="edit(artifact)">
                     Editar
                 </button>
-                <button class="btn btn-danger" @click="remove(artifact)">
+                <button class="btn btn-danger btn-sm" @click="remove(artifact)">
                     Excluir
                 </button>
             </td>
