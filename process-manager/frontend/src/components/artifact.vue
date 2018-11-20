@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-if="this.processSelected">
   <div class="col-lg-12 edition-father">
     <div class="edition">
           <button class="btn btn-danger" @click="showModal">
@@ -57,7 +57,7 @@
                     <div class="form-group">
                         <label >Tarefa</label>
                         <select class="form-control" multiple v-model="artifact.tasks">
-                            <option v-for="task in tasks" v-bind:value="task._id" >
+                            <option v-for="task in this.processSelected.tasks" v-bind:value="task._id" >
                                 {{task.name}}
                             </option>
                         </select>
@@ -73,15 +73,15 @@
         </div>
     </div>
   </div>
-  <div class="row" v-if="this.processSelected">
+  <div class="row">
     <table class="table">
       <thead>
         <tr>
-            <th scope="col">Nome</th>
-            <th scope="col">Detalhes</th>
-            <th scope="col">Tipo</th>
-            <!-- <th scope="col">Tarefas</th> -->
-            <th scope="col"></th>
+            <th style="width: 20%" scope="col">Nome</th>
+            <th style="width: 30%" scope="col">Detalhes</th>
+            <th style="width: 10%" scope="col">Tipo</th>
+            <th style="width: 20%" scope="col">Tarefas</th>
+            <th style="width: 20%" scope="col"></th>
         </tr>
       </thead>
       <tbody>
@@ -89,12 +89,12 @@
             <td scope="row">{{artifact.name}}</td>
             <td>{{artifact.details}}</td>
             <td>{{artifact.eTypeArtifact}}</td>
-            <!-- <td>{{artifact.tasks? artifact.tasks.join(', '): ''}}</td> -->
+            <td>{{getArtifactTaskArray(artifact, processSelected.tasks)}}</td>
             <td>
-                <button class="btn btn-danger btn-margin" @click="edit(artifact)">
+                <button class="btn btn-danger btn-margin btn-sm" @click="edit(artifact)">
                     Editar
                 </button>
-                <button class="btn btn-danger" @click="remove(artifact)">
+                <button class="btn btn-danger btn-margin btn-sm" @click="remove(artifact)">
                     Excluir
                 </button>
             </td>
@@ -128,10 +128,7 @@ export default {
             this.process = {};
             this.process.name = this.processSelected? this.processSelected.name : '';
 
-            taskService.findByProcess(this.processSelected._id, (response)=>{
-                this.tasks = response.data;
-                this.$refs.artifactModal.style.display = 'block';
-            });
+            this.$refs.artifactModal.style.display = 'block';
         },
         hideModal(){
             this.artifact = {tasks: []};
@@ -167,6 +164,13 @@ export default {
                 this.processSelected.artifacts.splice(index, 1);
                 this.process = {}                
             });
+        },
+        getArtifactTaskArray(artifact, tasks){
+            // debugger
+            let artifactTasks = tasks.filter((t) => {                
+                return artifact.tasks.indexOf(t._id) >= 0;
+            });
+            return artifactTasks.map((t) => t.name).join(', ');
         }
     },
     mounted(){
@@ -175,8 +179,4 @@ export default {
 }
 </script>
 
-<style>
-.btn-margin{
-    margin-right: 10px;
-}
-</style>
+<style></style>
