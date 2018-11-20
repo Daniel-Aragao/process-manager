@@ -176,7 +176,7 @@ export default {
         }
     },
     mounted(){
-        this.$emit('titleChanged', 'Artefatos');
+        this.$emit('titleChanged', 'Tarefas');
     }
 }
 </script>

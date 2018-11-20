@@ -34,7 +34,7 @@
                 </div>
             </li> -->
             <li class="nav-item btn btn-danger">
-                <a class="nav-link" href="#">Fluxos</a>
+                <router-link class="nav-link" to="/flux">Fluxos</router-link>
             </li>
             <li class="nav-item btn btn-danger float-right">
                 <a class="nav-link" @click="processosSelection">Processos</a>
