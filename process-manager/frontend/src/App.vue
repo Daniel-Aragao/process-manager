@@ -119,4 +119,8 @@ input.form-control:focus, select.form-control:focus{
 .modal-header .close > span{
     color: white
 }
+.btn-margin{
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
 </style>
