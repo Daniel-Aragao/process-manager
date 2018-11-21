@@ -44,13 +44,14 @@ module.exports.save = function(application, req, res){
 }
 
 module.exports.update = function(application, req, res){
-    application.app.models.tool.findById(req.body.id, (err, task) => {
+    application.app.models.tool.findById(req.body._id, (err, task) => {
         if(err){
             res.status(400);
             res.json(err);
         }else{
-            task.name = req.body.name
-            task.description = req.body.description
+            task.name = req.body.name;
+            task.description = req.body.description;
+            task.task = req.body.task;
 
             task.save((err, task) => {
                 if(err){

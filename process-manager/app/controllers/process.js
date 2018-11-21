@@ -41,7 +41,12 @@ module.exports.find = function(application, req, res){
 
                         application.app.models.task.find({process: process._id}, (err, tasks) => {
                             processObj.tasks = tasks;
-                            res.json(processObj);
+
+                            application.app.models.tool.find({process: process._id}, (err, tools) => {
+                                processObj.tools = tools;
+                                
+                                res.json(processObj);
+                            });
                         });
                         
                     }

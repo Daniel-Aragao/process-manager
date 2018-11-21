@@ -44,7 +44,7 @@
                       <div class="col-6">
                       <div class="form-group">
                           <label >Tarefa</label>
-                          <select class="form-control" multiple v-model="tool.tasks">
+                          <select class="form-control" multiple v-model="tool.task">
                               <option v-for="task in this.processSelected.tasks" v-bind:value="task._id" >
                                   {{task.name}}
                               </option>
@@ -67,16 +67,14 @@
           <tr>
               <th style="width: 20%" scope="col">Nome</th>
               <th style="width: 30%" scope="col">Descrição</th>
-              <th style="width: 10%" scope="col">Processo</th>
-              <th style="width: 10%" scope="col">Tarefas</th>
-              <th style="width: 20%" scope="col"></th>
+              <th style="width: 15%" scope="col">Tarefas</th>
+              <th style="width: 15%" scope="col"></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="tool in processSelected.tools" v-bind:key="tool._id">
               <td scope="row">{{tool.name}}</td>
               <td>{{tool.description}}</td>
-              <td>{{tool.process}}</td>
               <td>{{getToolTaskArray(tool, processSelected.tasks)}}</td>
               <td>
                   <button class="btn btn-danger btn-margin btn-sm" @click="edit(tool)">
@@ -104,7 +102,7 @@ export default {
     },
     data(){
         return {
-            tool: {tasks: []},
+            tool: {task: []},
             process: {},
             tasks: [],
             edition: false
@@ -119,7 +117,7 @@ export default {
             this.$refs.toolModal.style.display = 'block';
         },
         hideModal(){
-            this.tool = {tasks: []};
+            this.tool = {task: []};
             this.$refs.toolModal.style.display = 'none';
         },
         addTool() {
@@ -156,7 +154,7 @@ export default {
         getToolTaskArray(tool, tasks){
             // debugger
             let toolTasks = tasks.filter((t) => {
-                return tool.tasks.indexOf(t._id) >= 0;
+                return tool.task.indexOf(t._id) >= 0;
             });
             return toolTasks.map((t) => t.name).join(', ');
         }
