@@ -5,6 +5,7 @@ import artefato from '@/components/artifact';
 import task from '@/components/task';
 import ferramenta from '@/components/tool';
 import guia from '@/components/guide';
+import flux from '@/components/flux';
 
 Vue.use(Router);
 
@@ -33,6 +34,11 @@ export default new Router({
     {
       path: '/guia',
       component: guia,
+      props: true
+    },
+    {
+      path: '/flux',
+      component: flux,
       props: true
     }
   ]
