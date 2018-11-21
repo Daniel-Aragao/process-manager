@@ -60,36 +60,34 @@
 
         <div v-if="task">
             <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th style="width: 50%">Nome</th>
-                        <th style="width: 50%">{{task.name}}</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
-                        <td>Tipo</td>
+                        <th style="width: 30%">Nome</th>
+                        <td style="width: 70%">{{task.name}}</td>
+                    </tr>
+                    <tr>
+                        <th>Tipo</th>
                         <td>{{task.eTypeTask}}</td>
                     </tr>
                     <tr>
-                        <td>Processo</td>
+                        <th>Processo</th>
                         <td>{{processSelected.name}}</td>
                     </tr>
                     <tr>
-                        <td>Artefatos</td>
+                        <th>Artefatos</th>
                         <td>{{getArtifactsArray(task, processSelected.artifacts)}}</td>
                     </tr>
                     <tr>
-                        <td>Descrição</td>
+                        <th>Descrição</th>
                         <td>{{task.description}}</td>
                     </tr>
                     <tr>
-                        <td class="">
+                        <th class="">
                             Tarefas anteriores
                             <!-- <button class="btn btn-danger btn-sm float-right" @click="showModal('previousTasksModal')">
                                 Adicionar
                             </button> -->
-                        </td>
+                        </th>
                         <td>
                             <ul v-if="task.previousTask.length > 0">
                                 <li v-for="t in getTasks(task.previousTask, processSelected.tasks)">
@@ -103,12 +101,12 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>
+                        <th>
                             Tarefas posteriores
                             <button class="btn btn-danger btn-sm float-right" @click="showModal('nextTasksModal')">
                                 Adicionar
                             </button>
-                        </td>
+                        </th>
                         <td>
                             <ul v-if="task.nextTask.length > 0">
                                 <li v-for="t in getTasks(task.nextTask, processSelected.tasks)">
