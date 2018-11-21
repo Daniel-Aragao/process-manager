@@ -9,7 +9,6 @@ var TaskSchema = new mongoose.Schema({
   
   participants: [{type:mongoose.Schema.Types.ObjectId, ref: 'Collaborator'}],
   process: {type: mongoose.Schema.Types.ObjectId, ref: 'Process', required: [true, 'Informe o código do processo']},
-  artifact: [{type: mongoose.Schema.Types.ObjectId, ref: 'Artifact'}],
 
   previousTask: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}],
   nextTask: [{type: mongoose.Schema.Types.ObjectId, ref: 'Task'}]  

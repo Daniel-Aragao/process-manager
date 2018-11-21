@@ -52,6 +52,8 @@ module.exports.update = function(application, req, res){
             task.name = req.body.name;
             task.description = req.body.description;
             task.eTypeTask = req.body.eTypeTask;
+            task.previousTask = req.body.previousTask;
+            task.nextTask = req.body.nextTask;
 
             task.save((err, task) => {
                 if(err){

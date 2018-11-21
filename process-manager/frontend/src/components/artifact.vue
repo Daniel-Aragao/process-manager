@@ -89,7 +89,7 @@
             <td scope="row">{{artifact.name}}</td>
             <td>{{artifact.details}}</td>
             <td>{{artifact.eTypeArtifact}}</td>
-            <td>{{getArtifactTaskArray(artifact, processSelected.tasks)}}</td>
+            <td>{{getTasksArray(artifact, processSelected.tasks)}}</td>
             <td>
                 <button class="btn btn-danger btn-margin btn-sm" @click="edit(artifact)">
                     Editar
@@ -165,8 +165,7 @@ export default {
                 this.process = {}                
             });
         },
-        getArtifactTaskArray(artifact, tasks){
-            // debugger
+        getTasksArray(artifact, tasks){
             let artifactTasks = tasks.filter((t) => {                
                 return artifact.tasks.indexOf(t._id) >= 0;
             });
