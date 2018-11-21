@@ -78,6 +78,10 @@
                         <td>{{getArtifactsArray(task, processSelected.artifacts)}}</td>
                     </tr>
                     <tr>
+                        <th>Ferramentas</th>
+                        <td>{{getToolsArray(task, processSelected.tools)}}</td>
+                    </tr>
+                    <tr>
                         <th>Descrição</th>
                         <td>{{task.description}}</td>
                     </tr>
@@ -207,6 +211,13 @@ export default {
             });
 
             return artifactsFromTask.map((a) => a.name).join(', ');
+        },
+        getToolsArray(task, tools){
+            let toolsFromTask = tools.filter((t) => {
+                return t.task.indexOf(task._id) >= 0;
+            });
+
+            return toolsFromTask.map((a) => a.name).join(', ');
         },
         getTasks(tasksIds, tasks){
             return tasks.filter(t => tasksIds.indexOf(t._id) >= 0);
